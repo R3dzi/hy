@@ -17,21 +17,21 @@
     "desc": "",
     "exercises": [
       {
-        "order": "1x",
+        "order": "",
         "name": "BS Run",
-        "sets": "1",
+        "sets": "1x",
         "value": "10min"
       },
       {
-        "order": "1x",
+        "order": "",
         "name": "BNP Run",
-        "sets": "1",
+        "sets": "1x",
         "value": "25min"
       },
       {
-        "order": "1x",
+        "order": "",
         "name": "BS Run",
-        "sets": "1",
+        "sets": "1x",
         "value": "10min"
       }
     ],
