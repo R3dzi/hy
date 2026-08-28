@@ -18,19 +18,19 @@
     "exercises": [
       {
         "order": "",
-        "name": "Spokojny",
+        "name": "BS",
         "sets": "1x",
         "value": "10min"
       },
       {
         "order": "",
-        "name": "Z narastającym tempem",
+        "name": "BNP",
         "sets": "1x",
         "value": "25min"
       },
       {
         "order": "",
-        "name": "Spokojny",
+        "name": "BS",
         "sets": "1x",
         "value": "10min"
       }
@@ -43,7 +43,7 @@
   {
     "date": "2026-09-09",
     "day": "środa",
-    "name": "Wytrzymałość Siłowa Specyficzna 1",
+    "name": "Siłowy",
     "desc": "Rest 1:1",
     "exercises": [
       {
@@ -73,9 +73,34 @@
   {
     "date": "2026-09-10",
     "day": "czwartek",
-    "name": "Ski/Row Workout",
-    "desc": "Założenia:\n15min Ski (s2) + \n15min Row (s2) + \n10x100m / 60s (Ski/Row) (max)",
-    "exercises": [],
+    "name": "Ski/Row",
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "SKI (s2)",
+        "sets": "1",
+        "value": "15min"
+      },
+      {
+        "order": "2",
+        "name": "Row (s2)",
+        "sets": "1",
+        "value": "15min"
+      },
+      {
+        "order": "3",
+        "name": "Ski (p)",
+        "sets": "10",
+        "value": "60s"
+      },
+      {
+        "order": "4",
+        "name": "Row (p)",
+        "sets": "10",
+        "value": "60s"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -85,8 +110,14 @@
     "date": "2026-09-11",
     "day": "piątek",
     "name": "Bieg",
-    "desc": "Założenia:\n3x15min BS\n2min marsz",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "3",
+        "value": "15min"
+      }
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -95,8 +126,8 @@
   {
     "date": "2026-09-12",
     "day": "sobota",
-    "name": "Symulacja Hyrox 4",
-    "desc": "Po wszystkim WB 5x25",
+    "name": "Symulacja",
+    "desc": "",
     "exercises": [
       {
         "order": "1a",
@@ -121,6 +152,12 @@
         "name": "Run P",
         "sets": "5",
         "value": "400m"
+      },
+      {
+        "order": "2",
+        "name": "WB",
+        "sets": "5",
+        "value": "25"
       }
     ],
     "note": "",
@@ -132,8 +169,15 @@
     "date": "2026-09-13",
     "day": "niedziela",
     "name": "Bieg",
-    "desc": "6x10min BS / 2min marsz",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1",
+        "value": "60min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -154,8 +198,27 @@
     "date": "2026-09-15",
     "day": "wtorek",
     "name": "Bieg",
-    "desc": "15min BS + 7x2min I / 1,5min tr + 10min BS",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1x",
+        "value": "15min"
+      },
+      {
+        "order": "2",
+        "name": "Run/Walk",
+        "sets": "7x",
+        "value": "2min/1,5min"
+      },
+      {
+        "order": "3",
+        "name": "BS",
+        "sets": "1x",
+        "value": "10min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -164,7 +227,7 @@
   {
     "date": "2026-09-16",
     "day": "środa",
-    "name": "Wytrzymałość Siłowa Specyficzna 2",
+    "name": "Siłowy",
     "desc": "",
     "exercises": [
       {
@@ -194,9 +257,34 @@
   {
     "date": "2026-09-17",
     "day": "czwartek",
-    "name": "Ski/Row Workout",
-    "desc": "10min Ski (2) + 10min Row (2) + 8x3min / 60s (Ski / Row) (4)",
-    "exercises": [],
+    "name": "Ski/Row",
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "SKI (s2)",
+        "sets": "1",
+        "value": "10min"
+      },
+      {
+        "order": "2",
+        "name": "Row (s2)",
+        "sets": "1",
+        "value": "10min"
+      },
+      {
+        "order": "3",
+        "name": "Ski (s4)",
+        "sets": "8",
+        "value": "3min"
+      },
+      {
+        "order": "4",
+        "name": "Row (s4)",
+        "sets": "8",
+        "value": "3min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -206,8 +294,15 @@
     "date": "2026-09-18",
     "day": "piątek",
     "name": "Bieg",
-    "desc": "3x15min BS / 2min marsz",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1",
+        "value": "45min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -216,8 +311,8 @@
   {
     "date": "2026-09-19",
     "day": "sobota",
-    "name": "Symulacja Hyrox 5",
-    "desc": "Po wszystkim WB 5x25",
+    "name": "Symulacja",
+    "desc": "",
     "exercises": [
       {
         "order": "1a",
@@ -242,6 +337,12 @@
         "name": "Run P",
         "sets": "5",
         "value": "400m"
+      },
+      {
+        "order": "2",
+        "name": "WB",
+        "sets": "5",
+        "value": "25"
       }
     ],
     "note": "",
@@ -253,8 +354,15 @@
     "date": "2026-09-20",
     "day": "niedziela",
     "name": "Bieg",
-    "desc": "4x20min BS / 2min marsz",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1",
+        "value": "80min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -275,8 +383,27 @@
     "date": "2026-09-22",
     "day": "wtorek",
     "name": "Bieg",
-    "desc": "15min BS + 10x3min P / 1min marsz + 10min BS",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1x",
+        "value": "15min"
+      },
+      {
+        "order": "2",
+        "name": "Run/Walk",
+        "sets": "10x",
+        "value": "3min/1min"
+      },
+      {
+        "order": "3",
+        "name": "BS",
+        "sets": "1x",
+        "value": "10min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -285,7 +412,7 @@
   {
     "date": "2026-09-23",
     "day": "środa",
-    "name": "Wytrzymałość Siłowa Specyficzna 1",
+    "name": "Siłowy",
     "desc": "",
     "exercises": [
       {
@@ -315,9 +442,34 @@
   {
     "date": "2026-09-24",
     "day": "czwartek",
-    "name": "Ski/Row Workout",
-    "desc": "10min Ski (2) + 10min Row (2) + 14x1min / 30s (Ski / Row) (4)",
-    "exercises": [],
+    "name": "Ski/Row",
+    "desc": "
+    "exercises": [
+      {
+        "order": "1",
+        "name": "SKI (s2)",
+        "sets": "1",
+        "value": "10min"
+      },
+      {
+        "order": "2",
+        "name": "Row (s2)",
+        "sets": "1",
+        "value": "10min"
+      },
+      {
+        "order": "3",
+        "name": "Ski (s4)",
+        "sets": "14",
+        "value": "60s"
+      },
+      {
+        "order": "4",
+        "name": "Row (s4)",
+        "sets": "14",
+        "value": "60s"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -327,8 +479,15 @@
     "date": "2026-09-25",
     "day": "piątek",
     "name": "Bieg",
-    "desc": "3x15min BS / 2min marsz",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1",
+        "value": "45min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -337,8 +496,8 @@
   {
     "date": "2026-09-26",
     "day": "sobota",
-    "name": "Symulacja Hyrox 6",
-    "desc": "Po wszystkim WB 5x25",
+    "name": "Symulacja",
+    "desc": "",
     "exercises": [
       {
         "order": "1a",
@@ -363,6 +522,12 @@
         "name": "Run P",
         "sets": "5",
         "value": "400m"
+      },
+      {
+        "order": "2",
+        "name": "WB",
+        "sets": "5",
+        "value": "25"
       }
     ],
     "note": "",
@@ -374,8 +539,15 @@
     "date": "2026-09-27",
     "day": "niedziela",
     "name": "Bieg",
-    "desc": "4x20min BS / 2min marsz",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1",
+        "value": "80min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -396,8 +568,27 @@
     "date": "2026-09-29",
     "day": "wtorek",
     "name": "Bieg",
-    "desc": "15min BS + 6x3min I / 2,5min tr + 10min BS",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1x",
+        "value": "15min"
+      },
+      {
+        "order": "2",
+        "name": "Run/Walk",
+        "sets": "6x",
+        "value": "3min/2,5min"
+      },
+      {
+        "order": "3",
+        "name": "BS",
+        "sets": "1x",
+        "value": "10min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -406,7 +597,7 @@
   {
     "date": "2026-09-30",
     "day": "środa",
-    "name": "Wytrzymałość Siłowa Specyficzna 2",
+    "name": "Siłowy",
     "desc": "",
     "exercises": [
       {
@@ -436,9 +627,34 @@
   {
     "date": "2026-10-01",
     "day": "czwartek",
-    "name": "Ski/Row Workout",
-    "desc": "10min Ski (2) + 10min Row (2) + 16x1min / 30s (Ski / Row) (4)",
-    "exercises": [],
+    "name": "Ski/Row",
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "SKI (s2)",
+        "sets": "1",
+        "value": "10min"
+      },
+      {
+        "order": "2",
+        "name": "Row (s2)",
+        "sets": "1",
+        "value": "10min"
+      },
+      {
+        "order": "3",
+        "name": "Ski (s4)",
+        "sets": "14",
+        "value": "60s"
+      },
+      {
+        "order": "4",
+        "name": "Row (s4)",
+        "sets": "14",
+        "value": "60s"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -448,8 +664,15 @@
     "date": "2026-10-02",
     "day": "piątek",
     "name": "Bieg",
-    "desc": "3x15min BS / 2min marsz",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1x",
+        "value": "45min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -458,8 +681,8 @@
   {
     "date": "2026-10-03",
     "day": "sobota",
-    "name": "Symulacja Hyrox 5",
-    "desc": "Po wszystkim WB 5x25",
+    "name": "Symulacja",
+    "desc": "",
     "exercises": [
       {
         "order": "1a",
@@ -484,6 +707,12 @@
         "name": "Run P",
         "sets": "5",
         "value": "400m"
+      },
+      {
+        "order": "2",
+        "name": "WB",
+        "sets": "5",
+        "value": "25"
       }
     ],
     "note": "",
@@ -495,8 +724,15 @@
     "date": "2026-10-04",
     "day": "niedziela",
     "name": "Bieg",
-    "desc": "5x10min BS / 2min marsz",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1",
+        "value": "50min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -517,8 +753,27 @@
     "date": "2026-10-06",
     "day": "wtorek",
     "name": "Bieg",
-    "desc": "15min BS + 6x3min P / 1min marsz + 10min BS",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1x",
+        "value": "15min"
+      },
+      {
+        "order": "2",
+        "name": "Run/Walk",
+        "sets": "6x",
+        "value": "3min/1min"
+      },
+      {
+        "order": "3",
+        "name": "BS",
+        "sets": "1x",
+        "value": "10min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -538,9 +793,34 @@
   {
     "date": "2026-10-08",
     "day": "czwartek",
-    "name": "Ski/Row Workout",
-    "desc": "15min Ski (2) + 15min Row (2) + 10x100m / 60s (Ski/Row) (6)",
-    "exercises": [],
+    "name": "Ski/Row",
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "SKI (s2)",
+        "sets": "1",
+        "value": "15min"
+      },
+      {
+        "order": "2",
+        "name": "Row (s2)",
+        "sets": "1",
+        "value": "15min"
+      },
+      {
+        "order": "3",
+        "name": "Ski (p)",
+        "sets": "10",
+        "value": "100m"
+      },
+      {
+        "order": "4",
+        "name": "Row (p)",
+        "sets": "10",
+        "value": "100m"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
@@ -561,8 +841,21 @@
     "date": "2026-10-10",
     "day": "sobota",
     "name": "Bieg",
-    "desc": "Rozruch: 15min BS + 4x100m R / 100m marsz",
-    "exercises": [],
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS",
+        "sets": "1",
+        "value": "15min"
+      },
+      {
+        "order": "2",
+        "name": "Run/Walk",
+        "sets": "4x",
+        "value": "100m/100m"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
