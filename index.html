@@ -5,71 +5,1191 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f6f7f4">
 <title>HYROX — Plan treningowy</title>
+
 <style>
-:root{--bg:#f6f7f4;--card:#fff;--soft:#f0f2ed;--line:#dfe3dc;--text:#141817;--muted:#737b76;--lime:#b8df18;--lime-dark:#6d8700;--run:#bd7200;--strength:#6551c8;--danger:#b23c3c;--shadow:0 8px 30px rgba(24,32,26,.07)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased}.app{max-width:1180px;margin:auto;padding:20px 16px 100px}
-header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:8px 0 18px}.eyebrow{font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--lime-dark);margin-bottom:6px}h1{font-size:clamp(29px,7vw,46px);line-height:1;margin:0;letter-spacing:-.045em}.subtitle{color:var(--muted);font-size:14px;margin:8px 0 0}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{min-height:42px;padding:10px 13px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);font-weight:800;box-shadow:0 2px 5px rgba(0,0,0,.025);cursor:pointer}.btn.primary{background:var(--lime);border-color:var(--lime);color:#182000}.btn.danger{color:var(--danger)}
-.section-head{display:flex;align-items:center;justify-content:space-between;margin:20px 2px 9px}.section-head h3{margin:0;font-size:15px}.section-head span{font-size:12px;color:var(--muted)}
-.week{display:flex;gap:8px;overflow-x:auto;padding:2px 1px 5px;scrollbar-width:none}.week::-webkit-scrollbar{display:none}.day{min-width:100px;text-align:left;padding:11px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);cursor:pointer}.day.active{border-color:var(--lime-dark);box-shadow:0 0 0 1px var(--lime-dark) inset}.day.today:not(.active){border-color:#a8bc72}.day .wd{font-size:10px;text-transform:uppercase;color:var(--muted);font-weight:900}.day .num{font-size:21px;font-weight:900;margin:2px 0 4px}.day .mini{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mini.run{color:var(--run)}.mini.strength{color:var(--strength)}
-.hero{margin-top:14px;padding:17px;border:1px solid var(--line);border-radius:22px;background:var(--card);box-shadow:var(--shadow)}.datebar{display:flex;align-items:center;justify-content:space-between;gap:12px}.weekday{text-transform:capitalize;color:var(--muted);font-size:13px;font-weight:800}.date{font-size:clamp(23px,6vw,34px);font-weight:900;letter-spacing:-.04em}.nav{display:flex;gap:7px}.iconbtn{width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--soft);color:var(--text);font-size:22px;cursor:pointer}.workout{margin-top:15px;padding:18px;border-radius:17px;background:#fafbf9;border:1px solid var(--line)}.type{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}.type.run .dot{background:var(--run)}.type.strength .dot{background:var(--strength)}.workout h2{font-size:clamp(24px,6vw,34px);line-height:1.08;margin:8px 0 7px;letter-spacing:-.035em}.main-desc{font-size:16px;margin:0;white-space:pre-wrap;color:#303733}.empty{color:var(--muted)}.today-note{display:inline-block;margin-top:11px;padding:6px 9px;border-radius:999px;background:rgba(184,223,24,.17);color:var(--lime-dark);font-size:11px;font-weight:900}
-.exercise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.exercise{border:1px solid var(--line);border-radius:13px;background:var(--card);padding:12px}.exercise .row{display:flex;justify-content:space-between;gap:12px}.exercise .name{font-weight:850}.exercise .meta{font-size:12px;color:var(--muted);white-space:nowrap;text-align:right}.muted{color:var(--muted)}
-.full-page{position:fixed;inset:0;z-index:30;display:none;overflow:auto;background:var(--bg);padding:20px 16px 35px}.full-page.open{display:block}.full-inner{max-width:1180px;margin:auto}.full-head{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:8px 0 20px}.full-head h2{font-size:clamp(29px,7vw,44px);line-height:1;margin:0;letter-spacing:-.045em}.table-wrap{border:1px solid var(--line);border-radius:17px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse}th,td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);background:var(--soft)}td{font-size:13px}tr:last-child td{border-bottom:0}.daycell{font-weight:850;white-space:nowrap}.datecell{color:var(--muted);white-space:nowrap}.detail{min-width:220px;white-space:pre-wrap}.badge{display:inline-block;padding:5px 8px;border-radius:8px;background:var(--soft);font-size:10px;font-weight:900}.badge.run{color:var(--run);background:#fff4e2}.badge.strength{color:var(--strength);background:#f0edff}.badge.rest{color:var(--muted)}
-.editor{position:fixed;inset:0;z-index:40;display:none;align-items:flex-end;justify-content:center;background:rgba(30,38,45,.22);backdrop-filter:blur(7px)}.editor.open{display:flex}.sheet{width:min(760px,100%);max-height:94vh;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:22px 22px 0 0;padding:18px 16px 28px;box-shadow:0 -15px 60px rgba(0,0,0,.15)}.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.sheet h2{margin:0;font-size:22px}.field{margin:12px 0}label{display:block;font-size:11px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}input,textarea,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;background:#fafbf9;color:var(--text);outline:none;font:inherit}input:focus,textarea:focus,select:focus{border-color:var(--lime-dark)}textarea{min-height:90px;resize:vertical}.exercise-edit{padding:10px;border:1px solid var(--line);border-radius:12px;background:#fafbf9;margin-top:8px}.exercise-edit-grid{display:grid;grid-template-columns:65px 1fr 75px 110px;gap:7px}.remove-ex{margin-top:6px;border:0;background:none;color:var(--danger);font-size:11px;font-weight:900;padding:2px;cursor:pointer}.form-actions{display:flex;gap:8px;margin-top:15px}.form-actions .btn{flex:1}
-.bottom{position:fixed;z-index:20;left:0;right:0;bottom:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line)}.bottom-inner{max-width:760px;margin:auto;display:flex;gap:7px}.bottom .btn{flex:1}
-.toast{position:fixed;z-index:60;left:50%;bottom:75px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#182000;color:#fff;padding:9px 14px;border-radius:999px;font-size:12px;font-weight:850;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
-.auth{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;background:rgba(30,38,45,.25);backdrop-filter:blur(7px);padding:16px}.auth.open{display:flex}.auth-card{width:min(520px,100%);background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 20px 70px rgba(0,0,0,.18)}.auth-card h2{margin:0}.auth-card p{font-size:13px;color:var(--muted)}.auth-actions{display:flex;gap:8px;margin-top:12px}.auth-actions .btn{flex:1}.status{font-size:11px;color:var(--muted);margin-top:8px}.loading{opacity:.55;pointer-events:none}
-@media(max-width:760px){.app{padding-top:14px}.app>header{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions .btn{flex:1}.exercise-grid{grid-template-columns:1fr}.exercise-edit-grid{grid-template-columns:1fr 1fr}.full-page{padding-top:14px}.full-head{align-items:flex-start}.table-wrap{border:0;box-shadow:none;background:transparent}table,thead,tbody,tr,td{display:block}thead{display:none}tr{margin-bottom:8px;padding:11px;background:var(--card);border:1px solid var(--line);border-radius:14px}td{border:0;padding:2px 0;font-size:13px}.daycell,.datecell{display:inline-block;margin-right:8px}.detail{min-width:0;margin-top:5px}.typecell{margin-top:5px}}
+:root{
+  --bg:#f6f7f4;
+  --card:#fff;
+  --soft:#f0f2ed;
+  --line:#dfe3dc;
+  --text:#141817;
+  --muted:#737b76;
+  --lime:#b8df18;
+  --lime-dark:#6d8700;
+  --run:#bd7200;
+  --strength:#6551c8;
+  --danger:#b23c3c;
+  --shadow:0 8px 30px rgba(24,32,26,.07)
+}
+
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased
+}
+
+.app{
+  max-width:1180px;
+  margin:auto;
+  padding:20px 16px 100px
+}
+
+header{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:16px;
+  margin:8px 0 18px
+}
+
+.eyebrow{
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--lime-dark);
+  margin-bottom:6px
+}
+
+h1{
+  font-size:clamp(29px,7vw,46px);
+  line-height:1;
+  margin:0;
+  letter-spacing:-.045em
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:14px;
+  margin:8px 0 0
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap
+}
+
+.btn{
+  min-height:42px;
+  padding:10px 13px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--card);
+  color:var(--text);
+  font-weight:800;
+  box-shadow:0 2px 5px rgba(0,0,0,.025);
+  cursor:pointer
+}
+
+.btn.primary{
+  background:var(--lime);
+  border-color:var(--lime);
+  color:#182000
+}
+
+.btn.danger{
+  color:var(--danger)
+}
+
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:20px 2px 9px
+}
+
+.section-head h3{
+  margin:0;
+  font-size:15px
+}
+
+.section-head span{
+  font-size:12px;
+  color:var(--muted)
+}
+
+.week{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:2px 1px 5px;
+  scrollbar-width:none
+}
+
+.week::-webkit-scrollbar{
+  display:none
+}
+
+.day{
+  min-width:100px;
+  text-align:left;
+  padding:11px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--card);
+  color:var(--text);
+  cursor:pointer
+}
+
+.day.active{
+  border-color:var(--lime-dark);
+  box-shadow:0 0 0 1px var(--lime-dark) inset
+}
+
+.day.today:not(.active){
+  border-color:#a8bc72
+}
+
+.day .wd{
+  font-size:10px;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:900
+}
+
+.day .num{
+  font-size:21px;
+  font-weight:900;
+  margin:2px 0 4px
+}
+
+.day .mini{
+  font-size:11px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis
+}
+
+.mini.run{
+  color:var(--run)
+}
+
+.mini.strength{
+  color:var(--strength)
+}
+
+.hero{
+  margin-top:14px;
+  padding:17px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:var(--card);
+  box-shadow:var(--shadow)
+}
+
+.datebar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px
+}
+
+.weekday{
+  text-transform:capitalize;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800
+}
+
+.date{
+  font-size:clamp(23px,6vw,34px);
+  font-weight:900;
+  letter-spacing:-.04em
+}
+
+.nav{
+  display:flex;
+  gap:7px
+}
+
+.iconbtn{
+  width:44px;
+  height:44px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--soft);
+  color:var(--text);
+  font-size:22px;
+  cursor:pointer
+}
+
+.workout{
+  margin-top:15px;
+  padding:18px;
+  border-radius:17px;
+  background:#fafbf9;
+  border:1px solid var(--line)
+}
+
+.type{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted)
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--muted)
+}
+
+.type.run .dot{
+  background:var(--run)
+}
+
+.type.strength .dot{
+  background:var(--strength)
+}
+
+.workout h2{
+  font-size:clamp(24px,6vw,34px);
+  line-height:1.08;
+  margin:8px 0 7px;
+  letter-spacing:-.035em
+}
+
+.main-desc{
+  font-size:16px;
+  margin:0;
+  white-space:pre-wrap;
+  color:#303733
+}
+
+.empty{
+  color:var(--muted)
+}
+
+.today-note{
+  display:inline-block;
+  margin-top:11px;
+  padding:6px 9px;
+  border-radius:999px;
+  background:rgba(184,223,24,.17);
+  color:var(--lime-dark);
+  font-size:11px;
+  font-weight:900
+}
+
+.exercise-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px
+}
+
+.exercise{
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--card);
+  padding:12px
+}
+
+.exercise .row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px
+}
+
+.exercise .name{
+  font-weight:850
+}
+
+.exercise .meta{
+  font-size:12px;
+  color:var(--muted);
+  white-space:nowrap;
+  text-align:right
+}
+
+.muted{
+  color:var(--muted)
+}
+
+.full-page{
+  position:fixed;
+  inset:0;
+  z-index:30;
+  display:none;
+  overflow:auto;
+  background:var(--bg);
+  padding:20px 16px 35px
+}
+
+.full-page.open{
+  display:block
+}
+
+.full-inner{
+  max-width:1180px;
+  margin:auto
+}
+
+.full-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:15px;
+  margin:8px 0 20px
+}
+
+.full-head h2{
+  font-size:clamp(29px,7vw,44px);
+  line-height:1;
+  margin:0;
+  letter-spacing:-.045em
+}
+
+.table-wrap{
+  border:1px solid var(--line);
+  border-radius:17px;
+  overflow:hidden;
+  background:var(--card);
+  box-shadow:var(--shadow)
+}
+
+table{
+  width:100%;
+  border-collapse:collapse
+}
+
+th,td{
+  padding:12px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+  text-align:left
+}
+
+th{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  color:var(--muted);
+  background:var(--soft)
+}
+
+td{
+  font-size:13px
+}
+
+tr:last-child td{
+  border-bottom:0
+}
+
+.daycell{
+  font-weight:850;
+  white-space:nowrap
+}
+
+.datecell{
+  color:var(--muted);
+  white-space:nowrap
+}
+
+.detail{
+  min-width:220px;
+  white-space:pre-wrap
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:8px;
+  background:var(--soft);
+  font-size:10px;
+  font-weight:900
+}
+
+.badge.run{
+  color:var(--run);
+  background:#fff4e2
+}
+
+.badge.strength{
+  color:var(--strength);
+  background:#f0edff
+}
+
+.badge.rest{
+  color:var(--muted)
+}
+
+.editor{
+  position:fixed;
+  inset:0;
+  z-index:40;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  background:rgba(30,38,45,.22);
+  backdrop-filter:blur(7px)
+}
+
+.editor.open{
+  display:flex
+}
+
+.sheet{
+  width:min(760px,100%);
+  max-height:94vh;
+  overflow:auto;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px 22px 0 0;
+  padding:18px 16px 28px;
+  box-shadow:0 -15px 60px rgba(0,0,0,.15)
+}
+
+.sheet-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px
+}
+
+.sheet h2{
+  margin:0;
+  font-size:22px
+}
+
+.field{
+  margin:12px 0
+}
+
+label{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:6px
+}
+
+input,textarea,select{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:#fafbf9;
+  color:var(--text);
+  outline:none;
+  font:inherit
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:var(--lime-dark)
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical
+}
+
+.exercise-edit{
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fafbf9;
+  margin-top:8px
+}
+
+.exercise-edit-grid{
+  display:grid;
+  grid-template-columns:65px 1fr 75px 110px;
+  gap:7px
+}
+
+.remove-ex{
+  margin-top:6px;
+  border:0;
+  background:none;
+  color:var(--danger);
+  font-size:11px;
+  font-weight:900;
+  padding:2px;
+  cursor:pointer
+}
+
+.form-actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px
+}
+
+.form-actions .btn{
+  flex:1
+}
+
+.bottom{
+  position:fixed;
+  z-index:20;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);
+  border-top:1px solid var(--line)
+}
+
+.bottom-inner{
+  max-width:760px;
+  margin:auto;
+  display:flex;
+  gap:7px
+}
+
+.bottom .btn{
+  flex:1
+}
+
+.toast{
+  position:fixed;
+  z-index:60;
+  left:50%;
+  bottom:75px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  background:#182000;
+  color:#fff;
+  padding:9px 14px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:850;
+  transition:.2s
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0)
+}
+
+.auth{
+  position:fixed;
+  inset:0;
+  z-index:70;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(30,38,45,.25);
+  backdrop-filter:blur(7px);
+  padding:16px
+}
+
+.auth.open{
+  display:flex
+}
+
+.auth-card{
+  width:min(520px,100%);
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 20px 70px rgba(0,0,0,.18)
+}
+
+.auth-card h2{
+  margin:0
+}
+
+.auth-card p{
+  font-size:13px;
+  color:var(--muted)
+}
+
+.auth-actions{
+  display:flex;
+  gap:8px;
+  margin-top:12px
+}
+
+.auth-actions .btn{
+  flex:1
+}
+
+.status{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:8px
+}
+
+.loading{
+  opacity:.55;
+  pointer-events:none
+}
+
+@media(max-width:760px){
+
+  .app{
+    padding-top:14px
+  }
+
+  .app>header{
+    align-items:flex-start;
+    flex-direction:column
+  }
+
+  .actions{
+    width:100%
+  }
+
+  .actions .btn{
+    flex:1
+  }
+
+  .exercise-grid{
+    grid-template-columns:1fr
+  }
+
+  .exercise-edit-grid{
+    grid-template-columns:1fr 1fr
+  }
+
+  .full-page{
+    padding-top:14px
+  }
+
+  .full-head{
+    align-items:flex-start
+  }
+
+  .table-wrap{
+    border:0;
+    box-shadow:none;
+    background:transparent
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  td{
+    display:block
+  }
+
+  thead{
+    display:none
+  }
+
+  tr{
+    margin-bottom:8px;
+    padding:11px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px
+  }
+
+  td{
+    border:0;
+    padding:2px 0;
+    font-size:13px
+  }
+
+  .daycell,
+  .datecell{
+    display:inline-block;
+    margin-right:8px
+  }
+
+  .detail{
+    min-width:0;
+    margin-top:5px
+  }
+
+  .typecell{
+    margin-top:5px
+  }
+}
 </style>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23b8df18%22/><text x=%2232%22 y=%2242%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2230%22 font-weight=%22900%22 fill=%22%23141817%22>H</text></svg>"></head>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23b8df18%22/><text x=%2232%22 y=%2242%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2230%22 font-weight=%22900%22 fill=%22%23141817%22>H</text></svg>">
+
+</head>
+
 <body>
+
 <div class="app">
+
 <header>
-<div><div class="eyebrow">HYROX · Gdańsk 2026</div><h1>Plan treningowy</h1><p class="subtitle">Miesiąc przygotowań przed startem.</p></div>
-<div class="actions">
-<button class="btn" id="todayBtn">Dziś</button>
-<button class="btn" id="fullBtn">Pełny plan</button>
-<button class="btn" id="calendarBtn">＋ Kalendarz</button>
-<button class="btn primary" id="editBtn">Edytuj</button>
-</div>
+
+  <div>
+    <div class="eyebrow">HYROX · Gdańsk 2026</div>
+
+    <h1>Plan treningowy</h1>
+
+    <p class="subtitle">
+      Miesiąc przygotowań przed startem.
+    </p>
+  </div>
+
+  <div class="actions">
+
+    <button class="btn" id="todayBtn">
+      Dziś
+    </button>
+
+    <button class="btn" id="fullBtn">
+      Pełny plan
+    </button>
+
+    <button class="btn" id="calendarBtn">
+      ＋ Kalendarz
+    </button>
+
+    <button class="btn primary" id="editBtn">
+      Edytuj
+    </button>
+
+  </div>
+
 </header>
-<div class="section-head"><h3>Week</h3><span>dotknij dnia, aby przejść</span></div><div class="week" id="week"></div>
-<section class="hero" id="hero"></section>
+
+
+<div class="section-head">
+  <h3>Week</h3>
+  <span>dotknij dnia, aby przejść</span>
 </div>
-<div class="full-page" id="fullPage"><div class="full-inner">
-<header class="full-head"><div><div class="eyebrow">HYROX · Wszystkie dni</div><h2>Pełny plan</h2><p class="subtitle">Cały grafik treningowy w jednym widoku.</p></div><button class="iconbtn" id="closeFull">×</button></header>
-<div class="table-wrap"><table><thead><tr><th>Dzień</th><th>Data</th><th>Trening</th><th>Opis</th><th>Ćwiczenie</th><th>Serie</th><th>Dystans / powt.</th></tr></thead><tbody id="fullTable"></tbody></table></div>
-</div></div>
-<div class="editor" id="editor"><form class="sheet" id="form">
-<div class="sheet-head"><h2>Edytuj trening</h2><button type="button" class="iconbtn" id="closeBtn">×</button></div>
-<div class="field"><label>Data</label><input id="fDate" type="date" required></div>
-<!-- <div class="field"><label>Typ</label><select id="fType"><option value="run">Bieg</option><option value="strength">Siła</option><option value="other">Inny</option><option value="rest">Wolne</option></select></div> -->
-<div class="field"><label>Nazwa treningu</label><input id="fName" required></div>
-<!-- <div class="field"><label>Godzina rozpoczęcia (opcjonalnie)</label><input id="fStart" type="time"></div> -->
-<!-- <div class="field"><label>Godzina zakończenia (opcjonalnie)</label><input id="fEnd" type="time"></div> -->
-<div class="field"><label>Opis</label><textarea id="fDesc"></textarea></div>
-<!-- <div class="field"><label>Notatka</label><textarea id="fNote" placeholder="Np. samopoczucie, tempo, komentarz..."></textarea></div> -->
-<div class="field"><label>Zestaw ćwiczeń</label><div id="exerciseEditor"></div><button type="button" class="btn" id="addExercise" style="margin-top:8px;width:100%">+ Dodaj ćwiczenie</button></div>
-<div class="form-actions"><button type="button" class="btn" id="cancelBtn">Anuluj</button><button class="btn primary">Zapisz do GitHub</button></div>
-</form></div>
-<div class="auth" id="auth"><div class="auth-card">
-<div class="eyebrow">GitHub · zapis zmian</div><h2>Połącz z repozytorium</h2>
-<p>Podaj token GitHub. Zostanie zapamiętany w localStorage tego urządzenia, aby przy kolejnych wejściach nie trzeba było wpisywać go ponownie. Musi mieć uprawnienie do zapisu zawartości repozytorium.</p>
-<div class="field"><label>GitHub Personal Access Token</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_..."><div class="status">Token zostanie zapamiętany w localStorage tego urządzenia.</div></div>
-<div class="field"><label>Owner / użytkownik</label><input id="owner" value="R3dzi" readonly></div>
-<div class="field"><label>Nazwa repozytorium</label><input id="repo" value="hy" readonly></div>
-<div class="field"><label>Branch</label><input id="branch" value="main" readonly></div>
-<div class="auth-actions"><button class="btn" id="clearToken" type="button">Usuń zapamiętany token</button><button class="btn" id="authCancel">Anuluj</button><button class="btn primary" id="authSave">Połącz i zapisz</button></div>
-<div class="status" id="authStatus"></div>
-</div></div>
-<div class="bottom"><div class="bottom-inner"><button class="btn" id="prevBtn">← Poprzedni</button><button class="btn" id="calendarBottom">＋ Google Calendar</button><button class="btn primary" id="bottomEdit">Edytuj</button><button class="btn" id="nextBtn">Następny →</button></div></div>
-<div class="toast" id="toast"></div>
+
+<div class="week" id="week"></div>
+
+
+<section class="hero" id="hero"></section>
+
+</div>
+
+
+<!-- PEŁNY PLAN -->
+
+<div class="full-page" id="fullPage">
+
+  <div class="full-inner">
+
+    <header class="full-head">
+
+      <div>
+
+        <div class="eyebrow">
+          HYROX · Wszystkie dni
+        </div>
+
+        <h2>Pełny plan</h2>
+
+        <p class="subtitle">
+          Cały grafik treningowy w jednym widoku.
+        </p>
+
+      </div>
+
+      <button
+        class="iconbtn"
+        id="closeFull"
+      >
+        ×
+      </button>
+
+    </header>
+
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Dzień</th>
+            <th>Data</th>
+            <th>Trening</th>
+            <th>Opis</th>
+            <th>Ćwiczenie</th>
+            <th>Serie</th>
+            <th>Dystans / powt.</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="fullTable"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- EDYTOR -->
+
+<div class="editor" id="editor">
+
+<form class="sheet" id="form">
+
+  <div class="sheet-head">
+
+    <h2>Edytuj trening</h2>
+
+    <button
+      type="button"
+      class="iconbtn"
+      id="closeBtn"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>Data</label>
+
+    <input
+      id="fDate"
+      type="date"
+      required
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>Typ</label>
+
+    <select id="fType">
+
+      <option value="run">
+        Bieg
+      </option>
+
+      <option value="strength">
+        Siła
+      </option>
+
+      <option value="other">
+        Inny
+      </option>
+
+      <option value="rest">
+        Wolne
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>Nazwa treningu</label>
+
+    <input
+      id="fName"
+      required
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Godzina rozpoczęcia (opcjonalnie)
+    </label>
+
+    <input
+      id="fStart"
+      type="time"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Godzina zakończenia (opcjonalnie)
+    </label>
+
+    <input
+      id="fEnd"
+      type="time"
+    >
+
+  </div>
+
+
+  <div class="field">
+
+    <label>Opis</label>
+
+    <textarea id="fDesc"></textarea>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>Notatka</label>
+
+    <textarea
+      id="fNote"
+      placeholder="Np. samopoczucie, tempo, komentarz..."
+    ></textarea>
+
+  </div>
+
+
+  <div class="field">
+
+    <label>
+      Zestaw ćwiczeń
+    </label>
+
+    <div id="exerciseEditor"></div>
+
+    <button
+      type="button"
+      class="btn"
+      id="addExercise"
+      style="margin-top:8px;width:100%"
+    >
+      + Dodaj ćwiczenie
+    </button>
+
+  </div>
+
+
+  <div class="form-actions">
+
+    <button
+      type="button"
+      class="btn"
+      id="cancelBtn"
+    >
+      Anuluj
+    </button>
+
+    <button
+      class="btn primary"
+    >
+      Zapisz do GitHub
+    </button>
+
+  </div>
+
+</form>
+
+</div>
+
+
+<!-- AUTORYZACJA GITHUB -->
+
+<div class="auth" id="auth">
+
+  <div class="auth-card">
+
+    <div class="eyebrow">
+      GitHub · zapis zmian
+    </div>
+
+    <h2>
+      Połącz z repozytorium
+    </h2>
+
+    <p>
+      Podaj token GitHub. Zostanie zapamiętany
+      w localStorage tego urządzenia, aby przy
+      kolejnych wejściach nie trzeba było wpisywać
+      go ponownie. Musi mieć uprawnienie do zapisu
+      zawartości repozytorium.
+    </p>
+
+
+    <div class="field">
+
+      <label>
+        GitHub Personal Access Token
+      </label>
+
+      <input
+        id="token"
+        type="password"
+        autocomplete="off"
+        placeholder="github_pat_..."
+      >
+
+      <div class="status">
+        Token zostanie zapamiętany w localStorage
+        tego urządzenia.
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Owner / użytkownik
+      </label>
+
+      <input
+        id="owner"
+        value="R3dzi"
+        readonly
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Nazwa repozytorium
+      </label>
+
+      <input
+        id="repo"
+        value="hy"
+        readonly
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        Branch
+      </label>
+
+      <input
+        id="branch"
+        value="main"
+        readonly
+      >
+
+    </div>
+
+
+    <div class="auth-actions">
+
+      <button
+        class="btn"
+        id="clearToken"
+        type="button"
+      >
+        Usuń zapamiętany token
+      </button>
+
+      <button
+        class="btn"
+        id="authCancel"
+        type="button"
+      >
+        Anuluj
+      </button>
+
+      <button
+        class="btn primary"
+        id="authSave"
+        type="button"
+      >
+        Połącz i zapisz
+      </button>
+
+    </div>
+
+
+    <div
+      class="status"
+      id="authStatus"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- DOLNY PASEK -->
+
+<div class="bottom">
+
+  <div class="bottom-inner">
+
+    <button
+      class="btn"
+      id="prevBtn"
+    >
+      ← Poprzedni
+    </button>
+
+    <button
+      class="btn"
+      id="calendarBottom"
+    >
+      ＋ Google Calendar
+    </button>
+
+    <button
+      class="btn primary"
+      id="bottomEdit"
+    >
+      Edytuj
+    </button>
+
+    <button
+      class="btn"
+      id="nextBtn"
+    >
+      Następny →
+    </button>
+
+  </div>
+
+</div>
+
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
 <script>
+
 const JSON_PATH = "one_month_prior_start_gdansk_2026.json";
-const TOKEN_STORAGE_KEY = "hyrox_github_token";
+
+const TOKEN_STORAGE_KEY =
+  "hyrox_github_token";
+
 
 let plan = [];
+
 let selected = null;
+
 let pendingPayload = null;
+
 let github = null;
 
 
@@ -77,21 +1197,30 @@ let github = null;
    POMOCNICZE
 ========================================================= */
 
-const $ = id => document.getElementById(id);
+const $ = id =>
+  document.getElementById(id);
+
 
 const esc = s =>
-  String(s ?? "").replace(/[&<>"']/g, m => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  }[m]));
+  String(s ?? "").replace(
+    /[&<>"']/g,
+    m => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[m])
+  );
+
 
 const typeOf = x => {
-  if (x.type) return x.type;
 
-  let n = (x.name || "").toLowerCase();
+  if (x.type)
+    return x.type;
+
+  let n =
+    (x.name || "").toLowerCase();
 
   return n === "wolne"
     ? "rest"
@@ -102,12 +1231,19 @@ const typeOf = x => {
         : "other";
 };
 
+
 const nice = d =>
-  new Intl.DateTimeFormat("pl-PL", {
-    day: "numeric",
-    month: "long",
-    year: "numeric"
-  }).format(new Date(d + "T12:00:00"));
+  new Intl.DateTimeFormat(
+    "pl-PL",
+    {
+      day:"numeric",
+      month:"long",
+      year:"numeric"
+    }
+  ).format(
+    new Date(d + "T12:00:00")
+  );
+
 
 const dayName = d =>
   [
@@ -118,36 +1254,66 @@ const dayName = d =>
     "czwartek",
     "piątek",
     "sobota"
-  ][new Date(d + "T12:00:00").getDay()];
+  ][
+    new Date(
+      d + "T12:00:00"
+    ).getDay()
+  ];
+
 
 const todayISO = () => {
+
   let d = new Date();
 
   return (
     d.getFullYear() +
     "-" +
-    String(d.getMonth() + 1).padStart(2, "0") +
+    String(
+      d.getMonth() + 1
+    ).padStart(2,"0") +
     "-" +
-    String(d.getDate()).padStart(2, "0")
+    String(
+      d.getDate()
+    ).padStart(2,"0")
   );
 };
 
 
 /* =========================================================
-   NORMALIZACJA DANYCH
+   NORMALIZACJA
 ========================================================= */
 
 function normalize(arr) {
+
   return arr
     .map(x => ({
+
       ...x,
-      exercises: x.exercises || x.ex || [],
-      note: x.note || "",
-      startTime: x.startTime || "",
-      endTime: x.endTime || ""
+
+      exercises:
+        x.exercises ||
+        x.ex ||
+        [],
+
+      note:
+        x.note ||
+        "",
+
+      startTime:
+        x.startTime ||
+        "",
+
+      endTime:
+        x.endTime ||
+        ""
+
     }))
-    .sort((a, b) =>
-      (a.date || "").localeCompare(b.date || "")
+    .sort(
+      (a,b) =>
+        (a.date || "")
+          .localeCompare(
+            b.date || ""
+          )
     );
 }
 
@@ -155,183 +1321,277 @@ function normalize(arr) {
 /* =========================================================
    POBIERANIE JSON
 
-   Ta funkcja zawsze pobiera najnowszą wersję pliku.
-   cache: "no-store" + ?v=timestamp
+   WAŻNE:
+
+   Ta funkcja zawsze pobiera aktualną wersję
+   pliku zamiast korzystać z cache.
 ========================================================= */
 
-async function loadPlan(showToast = false, keepSelected = true) {
+async function loadPlan(
+  showToast = false,
+  keepSelected = true
+) {
 
-  document.body.classList.add("loading");
+  document.body
+    .classList
+    .add("loading");
+
 
   try {
 
-    const previousSelected = selected;
+    const previousSelected =
+      selected;
 
-    const cacheBust = Date.now();
 
-    const r = await fetch(
-      JSON_PATH + "?v=" + cacheBust,
-      {
-        method: "GET",
-        cache: "no-store",
-        headers: {
-          "Cache-Control": "no-cache",
-          "Pragma": "no-cache"
+    const url =
+      JSON_PATH +
+      "?v=" +
+      Date.now();
+
+
+    const r =
+      await fetch(
+        url,
+        {
+          method:"GET",
+
+          cache:"no-store",
+
+          headers:{
+            "Cache-Control":
+              "no-cache",
+
+            "Pragma":
+              "no-cache"
+          }
         }
-      }
-    );
+      );
+
 
     if (!r.ok) {
-      throw new Error("HTTP " + r.status);
+
+      throw new Error(
+        "HTTP " +
+        r.status
+      );
+
     }
 
-    const data = await r.json();
+
+    const data =
+      await r.json();
+
 
     if (!Array.isArray(data)) {
+
       throw new Error(
-        "Nieprawidłowy format danych — oczekiwano tablicy."
+        "Nieprawidłowy format danych."
       );
+
     }
 
-    plan = normalize(data);
+
+    plan =
+      normalize(data);
 
 
-    /* Zachowaj aktualnie wybrany dzień,
-       jeżeli nadal istnieje w JSON-ie */
+    /*
+      Jeżeli aktualnie wybrany dzień
+      nadal istnieje, zostajemy na nim.
+    */
 
     if (
       keepSelected &&
       previousSelected &&
-      plan.some(p => p.date === previousSelected)
+      plan.some(
+        p =>
+          p.date ===
+          previousSelected
+      )
     ) {
 
-      selected = previousSelected;
+      selected =
+        previousSelected;
 
     } else {
 
-      selected = plan[0]?.date || null;
+      selected =
+        plan[0]?.date ||
+        null;
 
     }
 
 
     render();
 
+
     if (showToast) {
-      toast("✓ Aktualny plan pobrany z GitHub");
+
+      toast(
+        "✓ Aktualny plan pobrany"
+      );
+
     }
+
 
     return true;
 
+
   } catch (e) {
 
-    console.error("Błąd pobierania JSON:", e);
+    console.error(
+      "Błąd pobierania JSON:",
+      e
+    );
+
 
     toast(
       "Nie udało się pobrać aktualnego planu."
     );
 
+
     return false;
+
 
   } finally {
 
-    document.body.classList.remove("loading");
+    document.body
+      .classList
+      .remove("loading");
 
   }
 }
 
 
 /* =========================================================
-   ODŚWIEŻENIE PRZED AKCJĄ
-
-   Najpierw pobiera aktualny JSON,
-   dopiero potem wykonuje akcję.
-========================================================= */
-
-async function refreshBefore(action) {
-
-  const ok = await loadPlan(false, true);
-
-  if (ok && typeof action === "function") {
-    action();
-  }
-}
-
-
-/* =========================================================
-   RENDER GŁÓWNY
+   RENDER
 ========================================================= */
 
 function render() {
 
   if (!plan.length) {
+
     $("week").innerHTML = "";
+
     $("hero").innerHTML = `
+
       <div class="workout">
-        <h2>Brak danych</h2>
+
+        <h2>
+          Brak danych
+        </h2>
+
         <p class="main-desc empty">
-          Nie znaleziono treningów w pliku JSON.
+          Nie znaleziono treningów
+          w pliku JSON.
         </p>
+
       </div>
+
     `;
+
     return;
   }
 
 
   let x =
-    plan.find(p => p.date === selected) ||
+    plan.find(
+      p =>
+        p.date === selected
+    ) ||
     plan[0];
 
-  let t = typeOf(x);
-  let today = todayISO();
 
-  selected = x.date;
+  let t =
+    typeOf(x);
+
+
+  let today =
+    todayISO();
+
+
+  selected =
+    x.date;
 
 
   /* =======================================================
-     TYGODNIOWY PASEK
+     WEEK
   ======================================================= */
 
-  $("week").innerHTML = (() => {
+  $("week").innerHTML =
+    (() => {
 
-    let i = plan.findIndex(
-      p => p.date === selected
-    );
+      let i =
+        plan.findIndex(
+          p =>
+            p.date ===
+            selected
+        );
 
-    let s = Math.max(
-      0,
-      Math.min(plan.length - 7, i - 3)
-    );
 
-    return plan
-      .slice(s, s + 7)
-      .map(p => `
-        <button
-          class="day
-            ${p.date === selected ? "active" : ""}
-            ${p.date === today ? "today" : ""}
-          "
-          onclick="selectDay('${p.date}')"
-        >
-          <div class="wd">
-            ${esc((p.day || dayName(p.date)).slice(0, 3))}
-          </div>
+      let s =
+        Math.max(
+          0,
+          Math.min(
+            plan.length - 7,
+            i - 3
+          )
+        );
 
-          <div class="num">
-            ${new Date(p.date + "T12:00:00").getDate()}
-          </div>
 
-          <div class="mini ${typeOf(p)}">
-            ${esc(p.name)}
-          </div>
-        </button>
-      `)
-      .join("");
+      return plan
+        .slice(
+          s,
+          s + 7
+        )
+        .map(
+          p => `
 
-  })();
+            <button
+              class="
+                day
+                ${p.date === selected ? "active" : ""}
+                ${p.date === today ? "today" : ""}
+              "
+              onclick="
+                selectDay('${p.date}')
+              "
+            >
+
+              <div class="wd">
+                ${esc(
+                  (p.day ||
+                   dayName(p.date))
+                  .slice(0,3)
+                )}
+              </div>
+
+              <div class="num">
+                ${
+                  new Date(
+                    p.date +
+                    "T12:00:00"
+                  ).getDate()
+                }
+              </div>
+
+              <div
+                class="mini ${typeOf(p)}"
+              >
+                ${esc(p.name)}
+              </div>
+
+            </button>
+
+          `
+        )
+        .join("");
+
+    })();
 
 
   /* =======================================================
-     GŁÓWNY WIDOK TRENINGU
+     HERO
   ======================================================= */
 
   $("hero").innerHTML = `
@@ -341,7 +1601,10 @@ function render() {
       <div>
 
         <div class="weekday">
-          ${esc(x.day || dayName(x.date))}
+          ${esc(
+            x.day ||
+            dayName(x.date)
+          )}
         </div>
 
         <div class="date">
@@ -349,6 +1612,7 @@ function render() {
         </div>
 
       </div>
+
 
       <div class="nav">
 
@@ -376,70 +1640,100 @@ function render() {
     <div class="workout">
 
       <div class="type ${t}">
+
         <span class="dot"></span>
+
         ${esc(x.name)}
+
       </div>
 
 
       ${
-        x.startTime && x.endTime
-          ? `
-            <div
-              style="
-                margin-top:6px;
-                font-size:12px;
-                font-weight:850;
-                color:var(--muted)
-              "
-            >
-              🕒 ${esc(x.startTime)}–${esc(x.endTime)}
-            </div>
-          `
-          : ""
+        x.startTime &&
+        x.endTime
+
+        ? `
+
+          <div
+            style="
+              margin-top:6px;
+              font-size:12px;
+              font-weight:850;
+              color:var(--muted)
+            "
+          >
+            🕒
+            ${esc(x.startTime)}
+            –
+            ${esc(x.endTime)}
+          </div>
+
+        `
+
+        : ""
       }
 
 
       ${
         t === "rest"
-          ? `
-            <h2>Regeneracja</h2>
 
-            <p class="main-desc empty">
-              Dzień bez zaplanowanego treningu.
-            </p>
-          `
-          : `
-            <h2>${esc(x.name)}</h2>
+        ? `
 
-            <p class="main-desc">
-              ${esc(
-                x.desc ||
-                "Brak opisu — dodaj go w edycji."
-              )}
-            </p>
-          `
+          <h2>
+            Regeneracja
+          </h2>
+
+          <p class="main-desc empty">
+            Dzień bez zaplanowanego treningu.
+          </p>
+
+        `
+
+        : `
+
+          <h2>
+            ${esc(x.name)}
+          </h2>
+
+          <p class="main-desc">
+            ${esc(
+              x.desc ||
+              "Brak opisu — dodaj go w edycji."
+            )}
+          </p>
+
+        `
       }
 
 
       ${
         x.note
-          ? `
-            <div class="today-note">
-              Notatka: ${esc(x.note)}
-            </div>
-          `
-          : ""
+
+        ? `
+
+          <div class="today-note">
+            Notatka:
+            ${esc(x.note)}
+          </div>
+
+        `
+
+        : ""
       }
 
 
       ${
         x.date === today
-          ? `
-            <div class="today-note">
-              ● Dzisiaj
-            </div>
-          `
-          : ""
+
+        ? `
+
+          <div class="today-note">
+            ● Dzisiaj
+          </div>
+
+        `
+
+        : ""
       }
 
     </div>
@@ -447,20 +1741,30 @@ function render() {
 
     ${
       x.exercises.length
-        ? `
-          <div class="section-head">
-            <h3>Ćwiczenia</h3>
 
-            <span>
-              ${x.exercises.length} pozycji
-            </span>
-          </div>
+      ? `
 
-          <div class="exercise-grid">
+        <div class="section-head">
 
-            ${x.exercises
+          <h3>
+            Ćwiczenia
+          </h3>
+
+          <span>
+            ${x.exercises.length}
+            pozycji
+          </span>
+
+        </div>
+
+
+        <div class="exercise-grid">
+
+          ${
+            x.exercises
               .map(
                 e => `
+
                   <div class="exercise">
 
                     <div class="row">
@@ -486,13 +1790,17 @@ function render() {
                     </div>
 
                   </div>
+
                 `
               )
-              .join("")}
+              .join("")
+          }
 
-          </div>
-        `
-        : ""
+        </div>
+
+      `
+
+      : ""
     }
 
   `;
@@ -501,110 +1809,151 @@ function render() {
 
 /* =========================================================
    WYBÓR DNIA
-
-   Tutaj NIE pobieramy JSON ponownie.
-   Kliknięcie dnia tylko zmienia widok.
 ========================================================= */
 
 function selectDay(d) {
 
-  selected = d;
+  selected =
+    d;
 
   render();
 
   scrollTo({
-    top: 0,
-    behavior: "smooth"
+    top:0,
+    behavior:"smooth"
   });
+
 }
 
 
 /* =========================================================
-   POPRZEDNI / NASTĘPNY DZIEŃ
+   POPRZEDNI / NASTĘPNY
 ========================================================= */
 
 async function move(n) {
 
   /*
-    Najpierw pobierz aktualny JSON.
-    Dzięki temu lista dni jest zawsze aktualna.
+    Najpierw pobieramy aktualny JSON.
   */
 
-  const ok = await loadPlan(false, true);
+  const ok =
+    await loadPlan(
+      false,
+      true
+    );
 
-  if (!ok || !plan.length) return;
+
+  if (
+    !ok ||
+    !plan.length
+  ) {
+    return;
+  }
 
 
-  let i = plan.findIndex(
-    p => p.date === selected
-  );
+  let i =
+    plan.findIndex(
+      p =>
+        p.date ===
+        selected
+    );
+
 
   if (i === -1) {
     i = 0;
   }
 
 
-  let newIndex = Math.max(
-    0,
-    Math.min(
-      plan.length - 1,
-      i + n
-    )
-  );
+  let newIndex =
+    Math.max(
+      0,
+      Math.min(
+        plan.length - 1,
+        i + n
+      )
+    );
 
 
-  selected = plan[newIndex].date;
+  selected =
+    plan[
+      newIndex
+    ].date;
+
 
   render();
 
+
   scrollTo({
-    top: 0,
-    behavior: "smooth"
+    top:0,
+    behavior:"smooth"
   });
+
 }
 
 
 /* =========================================================
-   PRZEJDŹ DO DZISIAJ
+   DZIŚ
 ========================================================= */
 
 async function goToToday() {
 
-  const ok = await loadPlan(false, true);
-
-  if (!ok || !plan.length) return;
-
-
-  let today = todayISO();
-
-  let x = plan.reduce(
-    (a, b) =>
-      Math.abs(
-        new Date(b.date) -
-        new Date(today)
-      ) <
-      Math.abs(
-        new Date(a.date) -
-        new Date(today)
-      )
-        ? b
-        : a
-  );
+  const ok =
+    await loadPlan(
+      false,
+      true
+    );
 
 
-  selected = x.date;
+  if (
+    !ok ||
+    !plan.length
+  ) {
+    return;
+  }
+
+
+  let today =
+    todayISO();
+
+
+  let x =
+    plan.reduce(
+      (a,b) =>
+
+        Math.abs(
+          new Date(b.date) -
+          new Date(today)
+        )
+
+        <
+
+        Math.abs(
+          new Date(a.date) -
+          new Date(today)
+        )
+
+          ? b
+          : a
+    );
+
+
+  selected =
+    x.date;
+
 
   render();
 
+
   scrollTo({
-    top: 0,
-    behavior: "smooth"
+    top:0,
+    behavior:"smooth"
   });
+
 }
 
 
 /* =========================================================
-   EDYTOR ĆWICZEŃ
+   ĆWICZENIA — EDYTOR
 ========================================================= */
 
 function renderExercises(ex) {
@@ -613,6 +1962,7 @@ function renderExercises(ex) {
     (ex || [])
       .map(
         e => `
+
           <div class="exercise-edit">
 
             <div class="exercise-edit-grid">
@@ -646,15 +1996,21 @@ function renderExercises(ex) {
             <button
               type="button"
               class="remove-ex"
-              onclick="this.closest('.exercise-edit').remove()"
+              onclick="
+                this.closest(
+                  '.exercise-edit'
+                ).remove()
+              "
             >
               Usuń
             </button>
 
           </div>
+
         `
       )
       .join("");
+
 }
 
 
@@ -666,46 +2022,62 @@ function collectExercises() {
     )
   ]
     .map(e => ({
+
       order:
-        e.querySelector(".e-order")
-          .value
-          .trim(),
+        e.querySelector(
+          ".e-order"
+        ).value.trim(),
 
       name:
-        e.querySelector(".e-name")
-          .value
-          .trim(),
+        e.querySelector(
+          ".e-name"
+        ).value.trim(),
 
       sets:
-        e.querySelector(".e-sets")
-          .value
-          .trim(),
+        e.querySelector(
+          ".e-sets"
+        ).value.trim(),
 
       value:
-        e.querySelector(".e-value")
-          .value
-          .trim()
+        e.querySelector(
+          ".e-value"
+        ).value.trim()
+
     }))
-    .filter(e => e.name);
+    .filter(
+      e =>
+        e.name
+    );
+
 }
 
 
 /* =========================================================
    OTWARCIE EDYTORA
 
-   Przed otwarciem pobieramy świeży JSON.
+   Za każdym razem pobieramy aktualny JSON.
 ========================================================= */
 
 async function openEditor() {
 
-  const ok = await loadPlan(false, true);
+  const ok =
+    await loadPlan(
+      false,
+      true
+    );
 
-  if (!ok) return;
+
+  if (!ok) {
+    return;
+  }
 
 
-  let x = plan.find(
-    p => p.date === selected
-  );
+  let x =
+    plan.find(
+      p =>
+        p.date ===
+        selected
+    );
 
 
   if (!x) {
@@ -718,61 +2090,100 @@ async function openEditor() {
   }
 
 
-  $("fDate").value = x.date;
+  $("fDate").value =
+    x.date;
 
-  $("fType").value = typeOf(x);
 
-  $("fName").value = x.name;
+  $("fType").value =
+    typeOf(x);
+
+
+  $("fName").value =
+    x.name;
+
 
   $("fStart").value =
-    x.startTime || "";
+    x.startTime ||
+    "";
+
 
   $("fEnd").value =
-    x.endTime || "";
+    x.endTime ||
+    "";
+
 
   $("fDesc").value =
-    x.desc || "";
+    x.desc ||
+    "";
+
 
   $("fNote").value =
-    x.note || "";
+    x.note ||
+    "";
+
 
   renderExercises(
     x.exercises
   );
 
 
-  $("editor").classList.add("open");
+  $("editor")
+    .classList
+    .add("open");
+
 }
 
 
 function closeEditor() {
-  $("editor").classList.remove("open");
+
+  $("editor")
+    .classList
+    .remove("open");
+
 }
 
 
 /* =========================================================
    GOOGLE CALENDAR
 
-   Przed otwarciem pobieramy aktualny JSON.
+   Najpierw aktualny JSON.
 ========================================================= */
 
 async function googleCalendar() {
 
-  const ok = await loadPlan(false, true);
-
-  if (!ok) return;
-
-
-  let x = plan.find(
-    p => p.date === selected
-  );
+  const ok =
+    await loadPlan(
+      false,
+      true
+    );
 
 
-  if (!x) return;
+  if (!ok) {
+    return;
+  }
 
 
-  let start = x.startTime || "";
-  let end = x.endTime || "";
+  let x =
+    plan.find(
+      p =>
+        p.date ===
+        selected
+    );
+
+
+  if (!x) {
+    return;
+  }
+
+
+  let start =
+    x.startTime ||
+    "";
+
+  let end =
+    x.endTime ||
+    "";
+
 
   let title =
     x.name ||
@@ -780,10 +2191,14 @@ async function googleCalendar() {
 
 
   let details = [
-    x.desc || "",
+
+    x.desc ||
+    "",
 
     x.exercises?.length
+
       ? "\nĆwiczenia:\n" +
+
         x.exercises
           .map(
             e =>
@@ -793,6 +2208,7 @@ async function googleCalendar() {
               `${e.value || ""}`
           )
           .join("\n")
+
       : "",
 
     x.note
@@ -805,7 +2221,11 @@ async function googleCalendar() {
 
 
   const fmt = s =>
-    String(s).replace(/[-:]/g, "");
+    String(s)
+      .replace(
+        /[-:]/g,
+        ""
+      );
 
 
   let params =
@@ -828,13 +2248,16 @@ async function googleCalendar() {
   );
 
 
-  if (start && end) {
+  if (
+    start &&
+    end
+  ) {
 
     params.set(
       "dates",
 
-      `${x.date.replace(/-/g, "")}T${fmt(start)}00/` +
-      `${x.date.replace(/-/g, "")}T${fmt(end)}00`
+      `${x.date.replace(/-/g,"")}T${fmt(start)}00/` +
+      `${x.date.replace(/-/g,"")}T${fmt(end)}00`
     );
 
   } else {
@@ -842,9 +2265,10 @@ async function googleCalendar() {
     params.set(
       "dates",
 
-      `${x.date.replace(/-/g, "")}/` +
-      `${x.date.replace(/-/g, "")}`
+      `${x.date.replace(/-/g,"")}/` +
+      `${x.date.replace(/-/g,"")}`
     );
+
   }
 
 
@@ -853,6 +2277,7 @@ async function googleCalendar() {
     params.toString(),
     "_blank"
   );
+
 }
 
 
@@ -863,110 +2288,143 @@ async function googleCalendar() {
 function renderFull() {
 
   $("fullTable").innerHTML =
-    plan
-      .map(p =>
 
-        (
-          p.exercises.length
+    plan
+      .map(
+        p =>
+
+          (
+            p.exercises.length
+
             ? p.exercises
+
             : [
                 {
-                  order: "",
-                  name: "",
-                  sets: "",
-                  value: ""
+                  order:"",
+                  name:"",
+                  sets:"",
+                  value:""
                 }
               ]
-        )
-          .map(
-            (e, i) => `
-              <tr>
 
-                <td class="daycell">
-                  ${
-                    i === 0
-                      ? esc(p.day)
-                      : ""
-                  }
-                </td>
-
-                <td class="datecell">
-                  ${
-                    i === 0
-                      ? esc(p.date)
-                      : ""
-                  }
-                </td>
-
-                <td class="typecell">
-                  ${
-                    i === 0
-                      ? `
-                        <span
-                          class="badge ${typeOf(p)}"
-                        >
-                          ${esc(p.name)}
-                        </span>
-                      `
-                      : ""
-                  }
-                </td>
-
-                <td class="detail">
-                  ${
-                    i === 0
-                      ? esc(p.desc || "")
-                      : ""
-                  }
-
-                  ${
-                    i === 0 && p.note
-                      ? `
-                        <br>
-                        <span class="muted">
-                          Notatka:
-                          ${esc(p.note)}
-                        </span>
-                      `
-                      : ""
-                  }
-                </td>
-
-                <td>
-                  ${esc(e.name)}
-                </td>
-
-                <td>
-                  ${esc(e.sets)}
-                </td>
-
-                <td>
-                  ${esc(e.value)}
-                </td>
-
-              </tr>
-            `
           )
-          .join("")
+            .map(
+              (e,i) => `
+
+                <tr>
+
+                  <td class="daycell">
+                    ${
+                      i === 0
+                        ? esc(p.day)
+                        : ""
+                    }
+                  </td>
+
+                  <td class="datecell">
+                    ${
+                      i === 0
+                        ? esc(p.date)
+                        : ""
+                    }
+                  </td>
+
+                  <td class="typecell">
+
+                    ${
+                      i === 0
+
+                        ? `
+
+                          <span
+                            class="badge ${typeOf(p)}"
+                          >
+                            ${esc(p.name)}
+                          </span>
+
+                        `
+
+                        : ""
+                    }
+
+                  </td>
+
+                  <td class="detail">
+
+                    ${
+                      i === 0
+                        ? esc(p.desc || "")
+                        : ""
+                    }
+
+                    ${
+                      i === 0 &&
+                      p.note
+
+                        ? `
+
+                          <br>
+
+                          <span class="muted">
+                            Notatka:
+                            ${esc(p.note)}
+                          </span>
+
+                        `
+
+                        : ""
+                    }
+
+                  </td>
+
+                  <td>
+                    ${esc(e.name)}
+                  </td>
+
+                  <td>
+                    ${esc(e.sets)}
+                  </td>
+
+                  <td>
+                    ${esc(e.value)}
+                  </td>
+
+                </tr>
+
+              `
+            )
+            .join("")
       )
       .join("");
+
 }
 
 
 async function openFull() {
 
-  const ok = await loadPlan(false, true);
+  const ok =
+    await loadPlan(
+      false,
+      true
+    );
 
-  if (!ok) return;
+
+  if (!ok) {
+    return;
+  }
+
 
   renderFull();
+
 
   $("fullPage")
     .classList
     .add("open");
 
+
   document.body.style.overflow =
     "hidden";
+
 }
 
 
@@ -976,8 +2434,10 @@ function closeFull() {
     .classList
     .remove("open");
 
+
   document.body.style.overflow =
     "";
+
 }
 
 
@@ -987,42 +2447,59 @@ function closeFull() {
 
 function toast(msg) {
 
-  let q = $("toast");
+  let q =
+    $("toast");
 
-  q.textContent = msg;
 
-  q.classList.add("show");
+  q.textContent =
+    msg;
+
+
+  q.classList
+    .add("show");
+
 
   setTimeout(
     () =>
-      q.classList.remove("show"),
+      q.classList
+        .remove("show"),
     1800
   );
+
 }
 
 
 /* =========================================================
-   AUTORYZACJA GITHUB
+   AUTH
 ========================================================= */
 
 function openAuth(payload) {
 
-  pendingPayload = payload;
+  pendingPayload =
+    payload;
 
-  $("authStatus").textContent = "";
+
+  $("authStatus")
+    .textContent = "";
+
 
   const saved =
     localStorage.getItem(
       TOKEN_STORAGE_KEY
     ) || "";
 
-  $("token").value = saved;
+
+  $("token").value =
+    saved;
+
 
   $("auth")
     .classList
     .add("open");
 
+
   $("token").focus();
+
 }
 
 
@@ -1032,7 +2509,10 @@ function closeAuth() {
     .classList
     .remove("open");
 
-  pendingPayload = null;
+
+  pendingPayload =
+    null;
+
 }
 
 
@@ -1047,15 +2527,18 @@ async function githubCommit() {
       .value
       .trim();
 
+
   const owner =
     $("owner")
       .value
       .trim();
 
+
   const repo =
     $("repo")
       .value
       .trim();
+
 
   const branch =
     $("branch")
@@ -1070,8 +2553,9 @@ async function githubCommit() {
     !repo
   ) {
 
-    $("authStatus").textContent =
-      "Uzupełnij token, owner i repozytorium.";
+    $("authStatus")
+      .textContent =
+        "Uzupełnij token, owner i repozytorium.";
 
     return;
   }
@@ -1079,8 +2563,9 @@ async function githubCommit() {
 
   if (!pendingPayload) {
 
-    $("authStatus").textContent =
-      "Brak danych do zapisania.";
+    $("authStatus")
+      .textContent =
+        "Brak danych do zapisania.";
 
     return;
   }
@@ -1092,8 +2577,9 @@ async function githubCommit() {
   );
 
 
-  $("authStatus").textContent =
-    "Pobieram aktualną wersję pliku z GitHub…";
+  $("authStatus")
+    .textContent =
+      "Pobieram aktualną wersję pliku z GitHub…";
 
 
   try {
@@ -1108,7 +2594,8 @@ async function githubCommit() {
     const headers = {
 
       Authorization:
-        "Bearer " + token,
+        "Bearer " +
+        token,
 
       Accept:
         "application/vnd.github+json",
@@ -1123,21 +2610,25 @@ async function githubCommit() {
 
 
     /*
-      Najpierw pobieramy plik z GitHub,
-      żeby dostać aktualny SHA.
+      Pobierz aktualny plik z GitHub.
+
+      Potrzebujemy SHA, żeby PUT
+      mógł zaktualizować istniejący plik.
     */
 
     const get =
       await fetch(
         api +
         "?ref=" +
-        encodeURIComponent(branch) +
+        encodeURIComponent(
+          branch
+        ) +
         "&v=" +
         Date.now(),
         {
-          method: "GET",
+          method:"GET",
           headers,
-          cache: "no-store"
+          cache:"no-store"
         }
       );
 
@@ -1145,11 +2636,16 @@ async function githubCommit() {
     let sha;
 
 
-    if (get.status === 404) {
+    if (
+      get.status === 404
+    ) {
 
-      sha = undefined;
+      sha =
+        undefined;
 
-    } else if (!get.ok) {
+    } else if (
+      !get.ok
+    ) {
 
       throw new Error(
         "Nie można odczytać pliku z GitHub (" +
@@ -1162,12 +2658,14 @@ async function githubCommit() {
       const current =
         await get.json();
 
-      sha = current.sha;
+      sha =
+        current.sha;
+
     }
 
 
     /*
-      JSON -> Base64
+      Zamień JSON na Base64.
     */
 
     const content =
@@ -1178,34 +2676,40 @@ async function githubCommit() {
               pendingPayload,
               null,
               2
-            ) + "\n"
+            ) +
+            "\n"
           )
         )
       );
 
 
-    $("authStatus").textContent =
-      "Zapisuję zmiany do GitHub…";
+    $("authStatus")
+      .textContent =
+        "Zapisuję zmiany do GitHub…";
 
 
     const put =
       await fetch(
         api,
         {
-          method: "PUT",
+          method:"PUT",
+
           headers,
-          body: JSON.stringify({
 
-            message:
-              "Update training plan",
+          body:
+            JSON.stringify({
 
-            content,
+              message:
+                "Update training plan",
 
-            sha,
+              content,
 
-            branch
+              sha,
 
-          })
+              branch
+
+            })
+
         }
       );
 
@@ -1218,8 +2722,12 @@ async function githubCommit() {
 
       throw new Error(
         result.message ||
-        ("GitHub API " + put.status)
+        (
+          "GitHub API " +
+          put.status
+        )
       );
+
     }
 
 
@@ -1231,72 +2739,103 @@ async function githubCommit() {
 
 
     /*
-      =====================================================
-      KLUCZOWY MOMENT
-
-      Zapis został wykonany.
-
-      NIE używamy location.reload().
-
-      Zamiast tego pobieramy ponownie świeży JSON
-      i renderujemy aplikację.
-      =====================================================
+      Zapamiętujemy dzień,
+      na którym użytkownik był.
     */
 
-    $("authStatus").textContent =
-      "Zapisano. Odświeżam kalendarz…";
+    const savedDate =
+      selected;
 
 
-    const savedDate = selected;
+    $("authStatus")
+      .textContent =
+        "Zapisano. Odświeżam kalendarz…";
 
 
     /*
-      Mała chwila pozwala GitHubowi zakończyć
-      zapis commita przed kolejnym GET.
+      GitHub Pages / CDN może potrzebować
+      krótkiej chwili na aktualizację pliku.
     */
 
     await new Promise(
       resolve =>
-        setTimeout(resolve, 500)
+        setTimeout(
+          resolve,
+          700
+        )
     );
 
 
+    /*
+      TERAZ NAJWAŻNIEJSZA CZĘŚĆ:
+
+      Pobieramy ponownie JSON.
+
+      Nie robimy:
+
+      location.reload()
+
+      tylko aktualizujemy dane
+      i wywołujemy render().
+    */
+
     const refreshed =
-      await loadPlan(false, false);
+      await loadPlan(
+        false,
+        false
+      );
 
 
-    if (refreshed) {
+    if (!refreshed) {
 
-      /*
-        Jeżeli edytowany dzień nadal istnieje,
-        pozostajemy na nim.
-      */
-
-      if (
-        savedDate &&
-        plan.some(
-          p => p.date === savedDate
-        )
-      ) {
-
-        selected = savedDate;
-
-      } else {
-
-        selected =
-          plan[0]?.date ||
-          null;
-      }
-
-
-      render();
+      throw new Error(
+        "Zapisano zmiany, ale nie udało się ponownie pobrać aktualnego kalendarza."
+      );
 
     }
 
 
+    /*
+      Wróć na dzień,
+      który użytkownik właśnie edytował.
+    */
+
+    if (
+      savedDate &&
+      plan.some(
+        p =>
+          p.date ===
+          savedDate
+      )
+    ) {
+
+      selected =
+        savedDate;
+
+    } else {
+
+      selected =
+        plan[0]?.date ||
+        null;
+
+    }
+
+
+    render();
+
+
+    /*
+      Zamknij okna.
+    */
+
     closeAuth();
 
     closeEditor();
+
+
+    /*
+      Informacja dla użytkownika.
+    */
 
     toast(
       "✓ Zapisano i odświeżono kalendarz"
@@ -1310,9 +2849,11 @@ async function githubCommit() {
       e
     );
 
-    $("authStatus").textContent =
-      e.message ||
-      "Wystąpił błąd podczas zapisu.";
+
+    $("authStatus")
+      .textContent =
+        e.message ||
+        "Wystąpił błąd podczas zapisu.";
 
   }
 
@@ -1329,7 +2870,8 @@ async function githubCommit() {
 */
 
 $("todayBtn").onclick =
-  () => goToToday();
+  () =>
+    goToToday();
 
 
 /*
@@ -1337,7 +2879,8 @@ $("todayBtn").onclick =
 */
 
 $("fullBtn").onclick =
-  () => openFull();
+  () =>
+    openFull();
 
 
 /*
@@ -1345,27 +2888,31 @@ $("fullBtn").onclick =
 */
 
 $("calendarBtn").onclick =
-  () => googleCalendar();
+  () =>
+    googleCalendar();
+
 
 $("calendarBottom").onclick =
-  () => googleCalendar();
+  () =>
+    googleCalendar();
 
 
 /*
   EDYCJA
-
-  openEditor() samo pobiera najnowszy JSON.
 */
 
 $("editBtn").onclick =
-  () => openEditor();
+  () =>
+    openEditor();
+
 
 $("bottomEdit").onclick =
-  () => openEditor();
+  () =>
+    openEditor();
 
 
 /*
-  PEŁNY PLAN — ZAMKNIĘCIE
+  ZAMKNIĘCIE PEŁNEGO PLANU
 */
 
 $("closeFull").onclick =
@@ -1373,11 +2920,12 @@ $("closeFull").onclick =
 
 
 /*
-  EDYTOR — ZAMKNIĘCIE
+  ZAMKNIĘCIE EDYTORA
 */
 
 $("closeBtn").onclick =
   closeEditor;
+
 
 $("cancelBtn").onclick =
   closeEditor;
@@ -1385,82 +2933,90 @@ $("cancelBtn").onclick =
 
 /*
   POPRZEDNI / NASTĘPNY
-
-  move() samo pobiera najnowszy JSON.
 */
 
 $("prevBtn").onclick =
-  () => move(-1);
+  () =>
+    move(-1);
+
 
 $("nextBtn").onclick =
-  () => move(1);
+  () =>
+    move(1);
 
 
 /* =========================================================
-   DODAWANIE ĆWICZENIA
+   DODAJ ĆWICZENIE
 ========================================================= */
 
-$("addExercise").onclick = () => {
+$("addExercise").onclick =
+  () => {
 
-  let d =
-    document.createElement("div");
+    let d =
+      document.createElement(
+        "div"
+      );
 
-  d.className =
-    "exercise-edit";
+
+    d.className =
+      "exercise-edit";
 
 
-  d.innerHTML = `
+    d.innerHTML = `
 
-    <div class="exercise-edit-grid">
+      <div class="exercise-edit-grid">
 
-      <input
-        class="e-order"
-        placeholder="1a"
+        <input
+          class="e-order"
+          placeholder="1a"
+        >
+
+        <input
+          class="e-name"
+          placeholder="Ćwiczenie"
+        >
+
+        <input
+          class="e-sets"
+          placeholder="Serie"
+        >
+
+        <input
+          class="e-value"
+          placeholder="Dystans / powt."
+        >
+
+      </div>
+
+
+      <button
+        type="button"
+        class="remove-ex"
+        onclick="
+          this.closest(
+            '.exercise-edit'
+          ).remove()
+        "
       >
+        Usuń
+      </button>
 
-      <input
-        class="e-name"
-        placeholder="Ćwiczenie"
-      >
-
-      <input
-        class="e-sets"
-        placeholder="Serie"
-      >
-
-      <input
-        class="e-value"
-        placeholder="Dystans / powt."
-      >
-
-    </div>
-
-    <button
-      type="button"
-      class="remove-ex"
-      onclick="
-        this.closest('.exercise-edit').remove()
-      "
-    >
-      Usuń
-    </button>
-
-  `;
+    `;
 
 
-  $("exerciseEditor")
-    .appendChild(d);
+    $("exerciseEditor")
+      .appendChild(d);
 
 
-  d.querySelector(
-    ".e-name"
-  ).focus();
+    d.querySelector(
+      ".e-name"
+    ).focus();
 
-};
+  };
 
 
 /* =========================================================
-   AUTORYZACJA
+   AUTH
 ========================================================= */
 
 $("authCancel").onclick =
@@ -1471,272 +3027,304 @@ $("authSave").onclick =
   githubCommit;
 
 
-$("clearToken").onclick = () => {
+$("clearToken").onclick =
+  () => {
 
-  localStorage.removeItem(
-    TOKEN_STORAGE_KEY
-  );
+    localStorage.removeItem(
+      TOKEN_STORAGE_KEY
+    );
 
-  $("token").value = "";
 
-  toast(
-    "Usunięto zapamiętany token"
-  );
+    $("token").value =
+      "";
 
-};
+
+    toast(
+      "Usunięto zapamiętany token"
+    );
+
+  };
 
 
 /* =========================================================
    ZAPIS FORMULARZA
 ========================================================= */
 
-$("form").onsubmit = async e => {
+$("form").onsubmit =
+  async e => {
 
-  e.preventDefault();
-
-
-  /*
-    Zanim zapiszemy zmiany,
-    pobieramy jeszcze raz najnowszy JSON.
-
-    Dzięki temu nie nadpisujemy przypadkiem
-    zmian wykonanych chwilę wcześniej
-    na GitHub.
-  */
-
-  const ok =
-    await loadPlan(false, true);
+    e.preventDefault();
 
 
-  if (!ok) {
+    /*
+      Bardzo ważne:
 
-    toast(
-      "Nie można pobrać aktualnego planu."
+      Przed przygotowaniem zmian pobieramy
+      aktualny JSON.
+
+      Dzięki temu edytor nie pracuje na
+      starej wersji danych.
+    */
+
+    const ok =
+      await loadPlan(
+        false,
+        true
+      );
+
+
+    if (!ok) {
+
+      toast(
+        "Nie można pobrać aktualnego planu."
+      );
+
+      return;
+    }
+
+
+    let old =
+      plan.find(
+        p =>
+          p.date ===
+          selected
+      );
+
+
+    if (!old) {
+
+      toast(
+        "Nie znaleziono edytowanego dnia."
+      );
+
+      return;
+    }
+
+
+    let d =
+      $("fDate").value;
+
+
+    /*
+      Sprawdzenie,
+      czy nowa data już istnieje.
+    */
+
+    if (
+      plan.some(
+        p =>
+          p.date === d &&
+          p !== old
+      )
+    ) {
+
+      toast(
+        "Ten dzień już istnieje w planie — wybierz inną datę."
+      );
+
+      return;
+    }
+
+
+    /*
+      Przygotowanie zmienionego treningu.
+    */
+
+    let updated = {
+
+      ...old,
+
+      date:
+        d,
+
+      day:
+        dayName(d),
+
+      type:
+        $("fType").value,
+
+      name:
+        $("fName")
+          .value
+          .trim(),
+
+      startTime:
+        $("fStart")
+          .value,
+
+      endTime:
+        $("fEnd")
+          .value,
+
+      desc:
+        $("fDesc")
+          .value
+          .trim(),
+
+      note:
+        $("fNote")
+          .value
+          .trim(),
+
+      exercises:
+        collectExercises()
+
+    };
+
+
+    /*
+      Podmień dzień.
+    */
+
+    let idx =
+      plan.indexOf(
+        old
+      );
+
+
+    let next =
+      [...plan];
+
+
+    next[idx] =
+      updated;
+
+
+    next =
+      normalize(next);
+
+
+    /*
+      Dane oczekujące na zapis.
+    */
+
+    pendingPayload =
+      next;
+
+
+    selected =
+      d;
+
+
+    /*
+      Otwórz autoryzację.
+    */
+
+    openAuth(
+      next
     );
-
-    return;
-  }
-
-
-  let old =
-    plan.find(
-      p => p.date === selected
-    );
-
-
-  if (!old) {
-
-    toast(
-      "Nie znaleziono edytowanego dnia."
-    );
-
-    return;
-  }
-
-
-  let d =
-    $("fDate").value;
-
-
-  /*
-    Sprawdzenie duplikatu daty
-  */
-
-  if (
-    plan.some(
-      p =>
-        p.date === d &&
-        p !== old
-    )
-  ) {
-
-    toast(
-      "Ten dzień już istnieje w planie — wybierz inną datę."
-    );
-
-    return;
-  }
-
-
-  /*
-    Przygotowanie nowego obiektu
-  */
-
-  let updated = {
-
-    ...old,
-
-    date: d,
-
-    day: dayName(d),
-
-    type:
-      $("fType").value,
-
-    name:
-      $("fName")
-        .value
-        .trim(),
-
-    startTime:
-      $("fStart")
-        .value,
-
-    endTime:
-      $("fEnd")
-        .value,
-
-    desc:
-      $("fDesc")
-        .value
-        .trim(),
-
-    note:
-      $("fNote")
-        .value
-        .trim(),
-
-    exercises:
-      collectExercises()
 
   };
-
-
-  /*
-    Podmiana dnia w planie
-  */
-
-  let idx =
-    plan.indexOf(old);
-
-
-  let next =
-    [...plan];
-
-
-  next[idx] =
-    updated;
-
-
-  next =
-    normalize(next);
-
-
-  /*
-    Zapamiętaj dane do wysłania
-  */
-
-  pendingPayload =
-    next;
-
-
-  /*
-    Nowo wybrana data
-  */
-
-  selected =
-    d;
-
-
-  /*
-    Otwórz okno autoryzacji
-  */
-
-  openAuth(
-    next
-  );
-
-};
 
 
 /* =========================================================
    KLIKNIĘCIE W TŁO MODALI
 ========================================================= */
 
-$("editor").onclick = e => {
+$("editor").onclick =
+  e => {
 
-  if (
-    e.target.id === "editor"
-  ) {
-    closeEditor();
-  }
+    if (
+      e.target.id ===
+      "editor"
+    ) {
 
-};
+      closeEditor();
+
+    }
+
+  };
 
 
-$("auth").onclick = e => {
+$("auth").onclick =
+  e => {
 
-  if (
-    e.target.id === "auth"
-  ) {
-    closeAuth();
-  }
+    if (
+      e.target.id ===
+      "auth"
+    ) {
 
-};
+      closeAuth();
+
+    }
+
+  };
 
 
 /* =========================================================
-   ESC + STRZAŁKI KLAWIATURY
+   ESC + STRZAŁKI
 ========================================================= */
 
-window.onkeydown = e => {
-
-  if (e.key === "Escape") {
-
-    closeEditor();
-
-    closeFull();
-
-    closeAuth();
-
-  }
-
-
-  /*
-    Strzałki działają tylko,
-    gdy żaden modal nie jest otwarty.
-  */
-
-  if (
-    !document.querySelector(
-      ".editor.open"
-    ) &&
-    !$("fullPage")
-      .classList
-      .contains("open") &&
-    !$("auth")
-      .classList
-      .contains("open")
-  ) {
+window.onkeydown =
+  e => {
 
     if (
-      e.key === "ArrowLeft"
+      e.key ===
+      "Escape"
     ) {
 
-      move(-1);
+      closeEditor();
+
+      closeFull();
+
+      closeAuth();
 
     }
 
 
+    /*
+      Strzałki działają tylko,
+      gdy nie ma otwartego modala.
+    */
+
     if (
-      e.key === "ArrowRight"
+      !document.querySelector(
+        ".editor.open"
+      ) &&
+
+      !$("fullPage")
+        .classList
+        .contains("open") &&
+
+      !$("auth")
+        .classList
+        .contains("open")
     ) {
 
-      move(1);
+      if (
+        e.key ===
+        "ArrowLeft"
+      ) {
+
+        move(-1);
+
+      }
+
+
+      if (
+        e.key ===
+        "ArrowRight"
+      ) {
+
+        move(1);
+
+      }
 
     }
 
-  }
-
-};
+  };
 
 
 /* =========================================================
-   START APLIKACJI
+   START
 ========================================================= */
 
-loadPlan(true, false);
+loadPlan(
+  true,
+  false
+);
 
 </script>
+
 </body>
 </html>
