@@ -20,6 +20,9 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
 .auth{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;background:rgba(30,38,45,.25);backdrop-filter:blur(7px);padding:16px}.auth.open{display:flex}.auth-card{width:min(520px,100%);background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 20px 70px rgba(0,0,0,.18)}.auth-card h2{margin:0}.auth-card p{font-size:13px;color:var(--muted)}.auth-actions{display:flex;gap:8px;margin-top:12px}.auth-actions .btn{flex:1}.status{font-size:11px;color:var(--muted);margin-top:8px}.loading{opacity:.55;pointer-events:none}
 .draft-note{display:none;margin:0 0 12px;padding:9px 12px;border:1px solid #d8e8a2;border-radius:12px;background:#f7fbe8;color:#526700;font-size:12px;font-weight:800}.draft-note.show{display:block}
 @media(max-width:760px){.app{padding-top:14px}.app>header{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions .btn{flex:1}.exercise-grid{grid-template-columns:1fr}.exercise-edit-grid{grid-template-columns:1fr 1fr}.full-page{padding-top:14px}.full-head{align-items:flex-start}.table-wrap{border:0;box-shadow:none;background:transparent}table,thead,tbody,tr,td{display:block}thead{display:none}tr{margin-bottom:8px;padding:11px;background:var(--card);border:1px solid var(--line);border-radius:14px}td{border:0;padding:2px 0;font-size:13px}.daycell,.datecell{display:inline-block;margin-right:8px}.detail{min-width:0;margin-top:5px}.typecell{margin-top:5px}.auth-actions{flex-direction:column}}
+.hidden-field {
+    display: none !important;
+}
 </style>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23b8df18%22/><text x=%2232%22 y=%2242%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2230%22 font-weight=%22900%22 fill=%22%23141817%22>H</text></svg>">
 </head>
@@ -31,13 +34,13 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
 <div class="eyebrow">HYROX · Gdańsk 2026</div>
 <h1>Plan treningowy</h1>
 <p class="subtitle">Miesiąc przygotowań przed startem.</p>
-</div>
-<div class="actions">
-<button class="btn" id="todayBtn">Dziś</button>
-<button class="btn" id="fullBtn">Pełny plan</button>
-<button class="btn" id="calendarBtn">＋ Kalendarz</button>
-<button class="btn primary" id="editBtn">Edytuj</button>
-</div>
+<!-- </div> -->
+<!-- <div class="actions"> -->
+<!-- <button class="btn" id="todayBtn">Dziś</button> -->
+<!-- <button class="btn" id="fullBtn">Pełny plan</button> -->
+<!-- <button class="btn" id="calendarBtn">＋ Kalendarz</button> -->
+<!-- <button class="btn primary" id="editBtn">Edytuj</button> -->
+<!-- </div> -->
 </header>
 
 <div id="draftNote" class="draft-note">Masz lokalne zmiany oczekujące na zapis do GitHub. Nie zostaną nadpisane przez automatyczne odświeżenie.</div>
@@ -69,13 +72,13 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
 <div class="editor" id="editor">
 <form class="sheet" id="form">
 <div class="sheet-head"><h2>Edytuj trening</h2><button type="button" class="iconbtn" id="closeBtn">×</button></div>
-<div class="field"><label>Data</label><input id="fDate" type="date" required></div>
-<div class="field"><label>Typ</label><select id="fType"><option value="run">Bieg</option><option value="strength">Siła</option><option value="other">Inny</option><option value="rest">Wolne</option></select></div>
-<div class="field"><label>Nazwa treningu</label><input id="fName" required></div>
-<div class="field"><label>Godzina rozpoczęcia (opcjonalnie)</label><input id="fStart" type="time"></div>
-<div class="field"><label>Godzina zakończenia (opcjonalnie)</label><input id="fEnd" type="time"></div>
+<div class="field hidden-field"><label>Data</label><input id="fDate" type="date" required></div>
+<div class="field hidden-field"><label>Typ</label><select id="fType"><option value="run">Bieg</option><option value="strength">Siła</option><option value="other">Inny</option><option value="rest">Wolne</option></select></div>
+<div class="field hidden-field"><label>Nazwa treningu</label><input id="fName" required></div>
+<div class="field hidden-field"><label>Godzina rozpoczęcia (opcjonalnie)</label><input id="fStart" type="time"></div>
+<div class="field hidden-field"><label>Godzina zakończenia (opcjonalnie)</label><input id="fEnd" type="time"></div>
 <div class="field"><label>Opis</label><textarea id="fDesc"></textarea></div>
-<div class="field"><label>Notatka</label><textarea id="fNote" placeholder="Np. samopoczucie, tempo, komentarz..."></textarea></div>
+<div class="field hidden-field"><label>Notatka</label><textarea id="fNote" placeholder="Np. samopoczucie, tempo, komentarz..."></textarea></div>
 <div class="field"><label>Zestaw ćwiczeń</label><div id="exerciseEditor"></div><button type="button" class="btn" id="addExercise" style="margin-top:8px;width:100%">+ Dodaj ćwiczenie</button></div>
 <div class="form-actions"><button type="button" class="btn" id="cancelBtn">Anuluj</button><button class="btn primary">Zapisz do GitHub</button></div>
 </form>
@@ -1107,17 +1110,9 @@ async function githubCommit() {
    EVENTY
 ----------------------------- */
 
-$("editBtn").onclick = openEditor;
-
-$("calendarBtn").onclick = googleCalendar;
-
 $("calendarBottom").onclick = googleCalendar;
 
-$("todayBtn").onclick = goToToday;
-
 $("bottomEdit").onclick = openEditor;
-
-$("fullBtn").onclick = openFull;
 
 $("closeFull").onclick = closeFull;
 
