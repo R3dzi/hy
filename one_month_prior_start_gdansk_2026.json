@@ -1,0 +1,450 @@
+[
+  {
+    "date": "2026-09-07",
+    "day": "poniedziałek",
+    "name": "Wolne",
+    "desc": "",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-08",
+    "day": "wtorek",
+    "name": "Bieg",
+    "desc": "10min BS + 25min BNP + 10min BS",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-09",
+    "day": "środa",
+    "name": "Wytrzymałość Siłowa Specyficzna 1",
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1a",
+        "name": "Sled Pull",
+        "sets": "10",
+        "value": "12,5m"
+      },
+      {
+        "order": "1b",
+        "name": "Lunges",
+        "sets": "10",
+        "value": "25m"
+      },
+      {
+        "order": "1c",
+        "name": "Wall Ball",
+        "sets": "10",
+        "value": "25r"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "date": "2026-09-10",
+    "day": "czwartek",
+    "name": "Ski/Row Workout",
+    "desc": "15min Ski (s2) + 15min Row (s2) + 10x100m / 60s (Ski/Row) (max)",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-11",
+    "day": "piątek",
+    "name": "Bieg",
+    "desc": "3x15min BS / 2min marsz",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-12",
+    "day": "sobota",
+    "name": "Symulacja Hyrox 4",
+    "desc": "Po wszystkim WB 5x25",
+    "exercises": [
+      {
+        "order": "1a",
+        "name": "Sled Pull",
+        "sets": "5",
+        "value": "20m"
+      },
+      {
+        "order": "1b",
+        "name": "Run P",
+        "sets": "5",
+        "value": "400m"
+      },
+      {
+        "order": "1c",
+        "name": "Burpee Broad Jump",
+        "sets": "5",
+        "value": "30m"
+      },
+      {
+        "order": "1d",
+        "name": "Run P",
+        "sets": "5",
+        "value": "400m"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "date": "2026-09-13",
+    "day": "niedziela",
+    "name": "Bieg",
+    "desc": "6x10min BS / 2min marsz",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-14",
+    "day": "poniedziałek",
+    "name": "Wolne",
+    "desc": "",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-15",
+    "day": "wtorek",
+    "name": "Bieg",
+    "desc": "15min BS + 7x2min I / 1,5min tr + 10min BS",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-16",
+    "day": "środa",
+    "name": "Wytrzymałość Siłowa Specyficzna 2",
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1a",
+        "name": "Sled Push",
+        "sets": "10",
+        "value": "12,5m"
+      },
+      {
+        "order": "1b",
+        "name": "Burpee Broad Jump",
+        "sets": "10",
+        "value": "20m"
+      },
+      {
+        "order": "1c",
+        "name": "Farmer Walk",
+        "sets": "10",
+        "value": "80m"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "date": "2026-09-17",
+    "day": "czwartek",
+    "name": "Ski/Row Workout",
+    "desc": "10min Ski (2) + 10min Row (2) + 8x3min / 60s (Ski / Row) (4)",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-18",
+    "day": "piątek",
+    "name": "Bieg",
+    "desc": "3x15min BS / 2min marsz",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-19",
+    "day": "sobota",
+    "name": "Symulacja Hyrox 5",
+    "desc": "Po wszystkim WB 5x25",
+    "exercises": [
+      {
+        "order": "1a",
+        "name": "Sled Push",
+        "sets": "5",
+        "value": "20m"
+      },
+      {
+        "order": "1b",
+        "name": "Run P",
+        "sets": "5",
+        "value": "400m"
+      },
+      {
+        "order": "1c",
+        "name": "Farmer Walk",
+        "sets": "5",
+        "value": "100m"
+      },
+      {
+        "order": "1d",
+        "name": "Run P",
+        "sets": "5",
+        "value": "400m"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "date": "2026-09-20",
+    "day": "niedziela",
+    "name": "Bieg",
+    "desc": "4x20min BS / 2min marsz",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-21",
+    "day": "poniedziałek",
+    "name": "Wolne",
+    "desc": "",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-22",
+    "day": "wtorek",
+    "name": "Bieg",
+    "desc": "15min BS + 10x3min P / 1min marsz + 10min BS",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-23",
+    "day": "środa",
+    "name": "Wytrzymałość Siłowa Specyficzna 1",
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1a",
+        "name": "Sled Pull",
+        "sets": "10",
+        "value": "12,5m"
+      },
+      {
+        "order": "1b",
+        "name": "Lunges",
+        "sets": "10",
+        "value": "25m"
+      },
+      {
+        "order": "1c",
+        "name": "Wall Ball",
+        "sets": "10",
+        "value": "25r"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "date": "2026-09-24",
+    "day": "czwartek",
+    "name": "Ski/Row Workout",
+    "desc": "10min Ski (2) + 10min Row (2) + 14x1min / 30s (Ski / Row) (4)",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-25",
+    "day": "piątek",
+    "name": "Bieg",
+    "desc": "3x15min BS / 2min marsz",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-26",
+    "day": "sobota",
+    "name": "Symulacja Hyrox 6",
+    "desc": "Po wszystkim WB 5x25",
+    "exercises": [
+      {
+        "order": "1a",
+        "name": "Lunges",
+        "sets": "5",
+        "value": "30m"
+      },
+      {
+        "order": "1b",
+        "name": "Run P",
+        "sets": "5",
+        "value": "400m"
+      },
+      {
+        "order": "1c",
+        "name": "Burpee Broad Jump",
+        "sets": "5",
+        "value": "30m"
+      },
+      {
+        "order": "1d",
+        "name": "Run P",
+        "sets": "5",
+        "value": "400m"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "date": "2026-09-27",
+    "day": "niedziela",
+    "name": "Bieg",
+    "desc": "4x20min BS / 2min marsz",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-28",
+    "day": "poniedziałek",
+    "name": "Wolne",
+    "desc": "",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-29",
+    "day": "wtorek",
+    "name": "Bieg",
+    "desc": "15min BS + 6x3min I / 2,5min tr + 10min BS",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-09-30",
+    "day": "środa",
+    "name": "Wytrzymałość Siłowa Specyficzna 2",
+    "desc": "",
+    "exercises": [
+      {
+        "order": "1a",
+        "name": "Sled Push",
+        "sets": "10",
+        "value": "12,5m"
+      },
+      {
+        "order": "1b",
+        "name": "Burpee Broad Jump",
+        "sets": "10",
+        "value": "20m"
+      },
+      {
+        "order": "1c",
+        "name": "Farmer Walk",
+        "sets": "10",
+        "value": "80m"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "date": "2026-10-01",
+    "day": "czwartek",
+    "name": "Ski/Row Workout",
+    "desc": "10min Ski (2) + 10min Row (2) + 16x1min / 30s (Ski / Row) (4)",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-10-02",
+    "day": "piątek",
+    "name": "Bieg",
+    "desc": "3x15min BS / 2min marsz",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-10-03",
+    "day": "sobota",
+    "name": "Symulacja Hyrox 5",
+    "desc": "Po wszystkim WB 5x25",
+    "exercises": [
+      {
+        "order": "1a",
+        "name": "Sled Push",
+        "sets": "5",
+        "value": "20m"
+      },
+      {
+        "order": "1b",
+        "name": "Run P",
+        "sets": "5",
+        "value": "400m"
+      },
+      {
+        "order": "1c",
+        "name": "Farmer Walk",
+        "sets": "5",
+        "value": "100m"
+      },
+      {
+        "order": "1d",
+        "name": "Run P",
+        "sets": "5",
+        "value": "400m"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "date": "2026-10-04",
+    "day": "niedziela",
+    "name": "Bieg",
+    "desc": "5x10min BS / 2min marsz",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-10-05",
+    "day": "poniedziałek",
+    "name": "Wolne",
+    "desc": "",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-10-06",
+    "day": "wtorek",
+    "name": "Bieg",
+    "desc": "15min BS + 6x3min P / 1min marsz + 10min BS",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-10-07",
+    "day": "środa",
+    "name": "Wolne",
+    "desc": "",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-10-08",
+    "day": "czwartek",
+    "name": "Ski/Row Workout",
+    "desc": "15min Ski (2) + 15min Row (2) + 10x100m / 60s (Ski/Row) (6)",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-10-09",
+    "day": "piątek",
+    "name": "Bieg",
+    "desc": "30min BS",
+    "exercises": [],
+    "note": ""
+  },
+  {
+    "date": "2026-10-10",
+    "day": "sobota",
+    "name": "Bieg",
+    "desc": "Rozruch: 15min BS + 4x100m R / 100m marsz",
+    "exercises": [],
+    "note": ""
+  }
+]

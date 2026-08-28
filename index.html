@@ -1,0 +1,130 @@
+﻿<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f7f4">
+<title>HYROX — Plan treningowy</title>
+<style>
+:root{--bg:#f6f7f4;--card:#fff;--soft:#f0f2ed;--line:#dfe3dc;--text:#141817;--muted:#737b76;--lime:#b8df18;--lime-dark:#6d8700;--run:#bd7200;--strength:#6551c8;--danger:#b23c3c;--shadow:0 8px 30px rgba(24,32,26,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased}.app{max-width:1180px;margin:auto;padding:20px 16px 100px}
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:8px 0 18px}.eyebrow{font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--lime-dark);margin-bottom:6px}h1{font-size:clamp(29px,7vw,46px);line-height:1;margin:0;letter-spacing:-.045em}.subtitle{color:var(--muted);font-size:14px;margin:8px 0 0}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{min-height:42px;padding:10px 13px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);font-weight:800;box-shadow:0 2px 5px rgba(0,0,0,.025);cursor:pointer}.btn.primary{background:var(--lime);border-color:var(--lime);color:#182000}.btn.danger{color:var(--danger)}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:20px 2px 9px}.section-head h3{margin:0;font-size:15px}.section-head span{font-size:12px;color:var(--muted)}
+.week{display:flex;gap:8px;overflow-x:auto;padding:2px 1px 5px;scrollbar-width:none}.week::-webkit-scrollbar{display:none}.day{min-width:100px;text-align:left;padding:11px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);cursor:pointer}.day.active{border-color:var(--lime-dark);box-shadow:0 0 0 1px var(--lime-dark) inset}.day.today:not(.active){border-color:#a8bc72}.day .wd{font-size:10px;text-transform:uppercase;color:var(--muted);font-weight:900}.day .num{font-size:21px;font-weight:900;margin:2px 0 4px}.day .mini{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mini.run{color:var(--run)}.mini.strength{color:var(--strength)}
+.hero{margin-top:14px;padding:17px;border:1px solid var(--line);border-radius:22px;background:var(--card);box-shadow:var(--shadow)}.datebar{display:flex;align-items:center;justify-content:space-between;gap:12px}.weekday{text-transform:capitalize;color:var(--muted);font-size:13px;font-weight:800}.date{font-size:clamp(23px,6vw,34px);font-weight:900;letter-spacing:-.04em}.nav{display:flex;gap:7px}.iconbtn{width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--soft);color:var(--text);font-size:22px;cursor:pointer}.workout{margin-top:15px;padding:18px;border-radius:17px;background:#fafbf9;border:1px solid var(--line)}.type{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}.type.run .dot{background:var(--run)}.type.strength .dot{background:var(--strength)}.workout h2{font-size:clamp(24px,6vw,34px);line-height:1.08;margin:8px 0 7px;letter-spacing:-.035em}.main-desc{font-size:16px;margin:0;white-space:pre-wrap;color:#303733}.empty{color:var(--muted)}.today-note{display:inline-block;margin-top:11px;padding:6px 9px;border-radius:999px;background:rgba(184,223,24,.17);color:var(--lime-dark);font-size:11px;font-weight:900}
+.exercise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.exercise{border:1px solid var(--line);border-radius:13px;background:var(--card);padding:12px}.exercise .row{display:flex;justify-content:space-between;gap:12px}.exercise .name{font-weight:850}.exercise .meta{font-size:12px;color:var(--muted);white-space:nowrap;text-align:right}.muted{color:var(--muted)}
+.full-page{position:fixed;inset:0;z-index:30;display:none;overflow:auto;background:var(--bg);padding:20px 16px 35px}.full-page.open{display:block}.full-inner{max-width:1180px;margin:auto}.full-head{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:8px 0 20px}.full-head h2{font-size:clamp(29px,7vw,44px);line-height:1;margin:0;letter-spacing:-.045em}.table-wrap{border:1px solid var(--line);border-radius:17px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse}th,td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);background:var(--soft)}td{font-size:13px}tr:last-child td{border-bottom:0}.daycell{font-weight:850;white-space:nowrap}.datecell{color:var(--muted);white-space:nowrap}.detail{min-width:220px;white-space:pre-wrap}.badge{display:inline-block;padding:5px 8px;border-radius:8px;background:var(--soft);font-size:10px;font-weight:900}.badge.run{color:var(--run);background:#fff4e2}.badge.strength{color:var(--strength);background:#f0edff}.badge.rest{color:var(--muted)}
+.editor{position:fixed;inset:0;z-index:40;display:none;align-items:flex-end;justify-content:center;background:rgba(30,38,45,.22);backdrop-filter:blur(7px)}.editor.open{display:flex}.sheet{width:min(760px,100%);max-height:94vh;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:22px 22px 0 0;padding:18px 16px 28px;box-shadow:0 -15px 60px rgba(0,0,0,.15)}.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.sheet h2{margin:0;font-size:22px}.field{margin:12px 0}label{display:block;font-size:11px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}input,textarea,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;background:#fafbf9;color:var(--text);outline:none;font:inherit}input:focus,textarea:focus,select:focus{border-color:var(--lime-dark)}textarea{min-height:90px;resize:vertical}.exercise-edit{padding:10px;border:1px solid var(--line);border-radius:12px;background:#fafbf9;margin-top:8px}.exercise-edit-grid{display:grid;grid-template-columns:65px 1fr 75px 110px;gap:7px}.remove-ex{margin-top:6px;border:0;background:none;color:var(--danger);font-size:11px;font-weight:900;padding:2px;cursor:pointer}.form-actions{display:flex;gap:8px;margin-top:15px}.form-actions .btn{flex:1}
+.bottom{position:fixed;z-index:20;left:0;right:0;bottom:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line)}.bottom-inner{max-width:760px;margin:auto;display:flex;gap:7px}.bottom .btn{flex:1}
+.toast{position:fixed;z-index:60;left:50%;bottom:75px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#182000;color:#fff;padding:9px 14px;border-radius:999px;font-size:12px;font-weight:850;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+.auth{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;background:rgba(30,38,45,.25);backdrop-filter:blur(7px);padding:16px}.auth.open{display:flex}.auth-card{width:min(520px,100%);background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 20px 70px rgba(0,0,0,.18)}.auth-card h2{margin:0}.auth-card p{font-size:13px;color:var(--muted)}.auth-actions{display:flex;gap:8px;margin-top:12px}.auth-actions .btn{flex:1}.status{font-size:11px;color:var(--muted);margin-top:8px}.loading{opacity:.55;pointer-events:none}
+@media(max-width:760px){.app{padding-top:14px}.app>header{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions .btn{flex:1}.exercise-grid{grid-template-columns:1fr}.exercise-edit-grid{grid-template-columns:1fr 1fr}.full-page{padding-top:14px}.full-head{align-items:flex-start}.table-wrap{border:0;box-shadow:none;background:transparent}table,thead,tbody,tr,td{display:block}thead{display:none}tr{margin-bottom:8px;padding:11px;background:var(--card);border:1px solid var(--line);border-radius:14px}td{border:0;padding:2px 0;font-size:13px}.daycell,.datecell{display:inline-block;margin-right:8px}.detail{min-width:0;margin-top:5px}.typecell{margin-top:5px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div><div class="eyebrow">HYROX · Training Plan</div><h1>Plan treningowy</h1><p class="subtitle">7 września — 10 października 2026</p></div>
+<div class="actions"><button class="btn" id="todayBtn">Dzisiaj</button><button class="btn" id="fullBtn">Pełny plan</button><button class="btn primary" id="editBtn">Edytuj dzień</button></div></header>
+<div class="section-head"><h3>Week</h3><span>dotknij dnia, aby przejść</span></div><div class="week" id="week"></div>
+<section class="hero" id="hero"></section>
+</div>
+
+<div class="full-page" id="fullPage"><div class="full-inner">
+<header class="full-head"><div><div class="eyebrow">HYROX · Wszystkie dni</div><h2>Pełny plan</h2><p class="subtitle">Cały grafik treningowy w jednym widoku.</p></div><button class="iconbtn" id="closeFull">×</button></header>
+<div class="table-wrap"><table><thead><tr><th>Dzień</th><th>Data</th><th>Trening</th><th>Opis</th><th>Ćwiczenie</th><th>Serie</th><th>Dystans / powt.</th></tr></thead><tbody id="fullTable"></tbody></table></div>
+</div></div>
+
+<div class="editor" id="editor"><form class="sheet" id="form">
+<div class="sheet-head"><h2>Edytuj trening</h2><button type="button" class="iconbtn" id="closeBtn">×</button></div>
+<div class="field"><label>Data</label><input id="fDate" type="date" required></div>
+<div class="field"><label>Typ</label><select id="fType"><option value="run">Bieg</option><option value="strength">Siła</option><option value="other">Inny</option><option value="rest">Wolne</option></select></div>
+<div class="field"><label>Nazwa treningu</label><input id="fName" required></div>
+<div class="field"><label>Opis</label><textarea id="fDesc"></textarea></div>
+<div class="field"><label>Notatka</label><textarea id="fNote" placeholder="Np. samopoczucie, tempo, komentarz..."></textarea></div>
+<div class="field"><label>Zestaw ćwiczeń</label><div id="exerciseEditor"></div><button type="button" class="btn" id="addExercise" style="margin-top:8px;width:100%">+ Dodaj ćwiczenie</button></div>
+<div class="form-actions"><button type="button" class="btn" id="cancelBtn">Anuluj</button><button class="btn primary">Zapisz do GitHub</button></div>
+</form></div>
+
+<div class="auth" id="auth"><div class="auth-card">
+<div class="eyebrow">GitHub · zapis zmian</div><h2>Połącz z repozytorium</h2>
+<p>Podaj token GitHub tylko na czas tej sesji. Token nie jest zapisywany w pliku ani w localStorage. Musi mieć uprawnienie do zapisu zawartości repozytorium.</p>
+<div class="field"><label>GitHub Personal Access Token</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_..."></div>
+<div class="field"><label>Owner / użytkownik</label><input id="owner" placeholder="np. jan-kowalski"></div>
+<div class="field"><label>Nazwa repozytorium</label><input id="repo" placeholder="np. hyrox-plan"></div>
+<div class="field"><label>Branch</label><input id="branch" value="main"></div>
+<div class="auth-actions"><button class="btn" id="authCancel">Anuluj</button><button class="btn primary" id="authSave">Połącz i zapisz</button></div>
+<div class="status" id="authStatus"></div>
+</div></div>
+
+<div class="bottom"><div class="bottom-inner"><button class="btn" id="prevBtn">← Poprzedni</button><button class="btn primary" id="bottomEdit">Edytuj</button><button class="btn" id="nextBtn">Następny →</button></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const JSON_PATH="one_month_prior_start_gdansk_2026.json";
+let plan=[],selected=null,pendingPayload=null,github=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const typeOf=x=>{let n=(x.name||"").toLowerCase();return n==="wolne"?"rest":n.includes("bieg")?"run":n.includes("siłowa")?"strength":"other"};
+const nice=d=>new Intl.DateTimeFormat("pl-PL",{day:"numeric",month:"long",year:"numeric"}).format(new Date(d+"T12:00:00"));
+const dayName=d=>["niedziela","poniedziałek","wtorek","środa","czwartek","piątek","sobota"][new Date(d+"T12:00:00").getDay()];
+function normalize(arr){return arr.map(x=>({...x,exercises:x.exercises||x.ex||[],note:x.note||""})).sort((a,b)=>a.date.localeCompare(b.date))}
+async function loadPlan(){
+ document.body.classList.add("loading");
+ try{
+  const r=await fetch(JSON_PATH+"?v="+Date.now(),{cache:"no-store"});
+  if(!r.ok)throw new Error("HTTP "+r.status);
+  plan=normalize(await r.json());
+  selected=plan[0]?.date||null; render(); toast("Plan załadowany z JSON");
+ }catch(e){toast("Nie udało się wczytać JSON. Sprawdź ścieżkę pliku.");console.error(e)}
+ finally{document.body.classList.remove("loading")}
+}
+function render(){
+ if(!plan.length)return;
+ let x=plan.find(p=>p.date===selected)||plan[0],t=typeOf(x),today=new Date().toISOString().slice(0,10);
+ selected=x.date;
+ $("week").innerHTML=(()=>{let i=plan.findIndex(p=>p.date===selected),s=Math.max(0,Math.min(plan.length-7,i-3));return plan.slice(s,s+7).map(p=>`<button class="day ${p.date===selected?"active":""} ${p.date===today?"today":""}" onclick="selectDay('${p.date}')"><div class="wd">${esc(p.day.slice(0,3))}</div><div class="num">${new Date(p.date+"T12:00:00").getDate()}</div><div class="mini ${typeOf(p)}">${esc(p.name)}</div></button>`).join("")})();
+ $("hero").innerHTML=`<div class="datebar"><div><div class="weekday">${esc(x.day)}</div><div class="date">${nice(x.date)}</div></div><div class="nav"><button class="iconbtn" onclick="move(-1)">‹</button><button class="iconbtn" onclick="move(1)">›</button></div></div><div class="workout"><div class="type ${t}"><span class="dot"></span>${esc(x.name)}</div>${t==="rest"?`<h2>Regeneracja</h2><p class="main-desc empty">Dzień bez zaplanowanego treningu.</p>`:`<h2>${esc(x.name)}</h2><p class="main-desc">${esc(x.desc||"Brak opisu — dodaj go w edycji.")}</p>`}${x.note?`<div class="today-note">Notatka: ${esc(x.note)}</div>`:""}${x.date===today?`<div class="today-note">● Dzisiaj</div>`:""}</div>${x.exercises.length?`<div class="section-head"><h3>Ćwiczenia</h3><span>${x.exercises.length} pozycji</span></div><div class="exercise-grid">${x.exercises.map(e=>`<div class="exercise"><div class="row"><div><span class="muted">${esc(e.order)}</span> <span class="name">${esc(e.name)}</span></div><div class="meta">${esc(e.sets)} × ${esc(e.value)}</div></div></div>`).join("")}</div>`:""}`;
+}
+function selectDay(d){selected=d;render();scrollTo({top:0,behavior:"smooth"})}
+function move(n){let i=plan.findIndex(p=>p.date===selected);selected=plan[Math.max(0,Math.min(plan.length-1,i+n))].date;render();scrollTo({top:0,behavior:"smooth"})}
+function renderExercises(ex){$("exerciseEditor").innerHTML=(ex||[]).map(e=>`<div class="exercise-edit"><div class="exercise-edit-grid"><input class="e-order" value="${esc(e.order)}" placeholder="1a"><input class="e-name" value="${esc(e.name)}" placeholder="Ćwiczenie"><input class="e-sets" value="${esc(e.sets)}" placeholder="Serie"><input class="e-value" value="${esc(e.value)}" placeholder="Dystans / powt."></div><button type="button" class="remove-ex" onclick="this.closest('.exercise-edit').remove()">Usuń</button></div>`).join("")}
+function collectExercises(){return [...document.querySelectorAll(".exercise-edit")].map(e=>({order:e.querySelector(".e-order").value.trim(),name:e.querySelector(".e-name").value.trim(),sets:e.querySelector(".e-sets").value.trim(),value:e.querySelector(".e-value").value.trim()})).filter(e=>e.name)}
+function openEditor(){let x=plan.find(p=>p.date===selected);$("fDate").value=x.date;$("fType").value=typeOf(x);$("fName").value=x.name;$("fDesc").value=x.desc||"";$("fNote").value=x.note||"";renderExercises(x.exercises);$("editor").classList.add("open")}
+function closeEditor(){$("editor").classList.remove("open")}
+function renderFull(){$("fullTable").innerHTML=plan.map(p=>(p.exercises.length?p.exercises:[{order:"",name:"",sets:"",value:""}]).map((e,i)=>`<tr><td class="daycell">${i===0?esc(p.day):""}</td><td class="datecell">${i===0?esc(p.date):""}</td><td class="typecell">${i===0?`<span class="badge ${typeOf(p)}">${esc(p.name)}</span>`:""}</td><td class="detail">${i===0?esc(p.desc||""): ""}${i===0&&p.note?`<br><span class="muted">Notatka: ${esc(p.note)}</span>`:""}</td><td>${esc(e.name)}</td><td>${esc(e.sets)}</td><td>${esc(e.value)}</td></tr>`).join("")).join("")}
+function openFull(){renderFull();$("fullPage").classList.add("open");document.body.style.overflow="hidden"}
+function closeFull(){$("fullPage").classList.remove("open");document.body.style.overflow=""}
+function toast(msg){let q=$("toast");q.textContent=msg;q.classList.add("show");setTimeout(()=>q.classList.remove("show"),1800)}
+function openAuth(payload){pendingPayload=payload;$("authStatus").textContent="";$("auth").classList.add("open");$("token").focus()}
+function closeAuth(){$("auth").classList.remove("open");pendingPayload=null}
+async function githubCommit(){
+ const token=$("token").value.trim(),owner=$("owner").value.trim(),repo=$("repo").value.trim(),branch=$("branch").value.trim()||"main";
+ if(!token||!owner||!repo){$("authStatus").textContent="Uzupełnij token, owner i repozytorium.";return}
+ $("authStatus").textContent="Pobieram aktualną wersję pliku…";
+ try{
+  const api=`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${JSON_PATH}`;
+  const headers={Authorization:"Bearer "+token,Accept:"application/vnd.github+json","Content-Type":"application/json","X-GitHub-Api-Version":"2022-11-28"};
+  const get=await fetch(api+"?ref="+encodeURIComponent(branch),{headers,cache:"no-store"});
+  if(!get.ok)throw new Error("Nie można odczytać pliku ("+get.status+").");
+  const current=await get.json();
+  const content=btoa(unescape(encodeURIComponent(JSON.stringify(pendingPayload,null,2)+"\n")));
+  $("authStatus").textContent="Zapisuję zmiany do GitHub…";
+  const put=await fetch(api,{method:"PUT",headers,body:JSON.stringify({message:"Update training plan",content,sha:current.sha,branch})});
+  const result=await put.json();
+  if(!put.ok)throw new Error(result.message||("GitHub API "+put.status));
+  github={owner,repo,branch};
+  plan=normalize(pendingPayload);selected=plan.find(p=>p.date===selected)?.date||plan[0].date;
+  closeAuth();closeEditor();render();toast("Zapisano do one_month_prior_start_gdansk_2026.json");
+ }catch(e){$("authStatus").textContent=e.message;console.error(e)}
+}
+$("editBtn").onclick=openEditor;$("bottomEdit").onclick=openEditor;$("fullBtn").onclick=openFull;$("closeFull").onclick=closeFull;$("closeBtn").onclick=closeEditor;$("cancelBtn").onclick=closeEditor;$("prevBtn").onclick=()=>move(-1);$("nextBtn").onclick=()=>move(1);
+$("addExercise").onclick=()=>{let d=document.createElement("div");d.className="exercise-edit";d.innerHTML=`<div class="exercise-edit-grid"><input class="e-order" placeholder="1a"><input class="e-name" placeholder="Ćwiczenie"><input class="e-sets" placeholder="Serie"><input class="e-value" placeholder="Dystans / powt."></div><button type="button" class="remove-ex" onclick="this.closest('.exercise-edit').remove()">Usuń</button>`;$("exerciseEditor").appendChild(d);d.querySelector(".e-name").focus()};
+$("authCancel").onclick=closeAuth;$("authSave").onclick=githubCommit;
+$("todayBtn").onclick=()=>{let today=new Date().toISOString().slice(0,10),x=plan.reduce((a,b)=>Math.abs(new Date(b.date)-new Date(today))<Math.abs(new Date(a.date)-new Date(today))?b:a);selected=x.date;render();scrollTo({top:0,behavior:"smooth"})};
+$("form").onsubmit=e=>{e.preventDefault();let old=plan.find(p=>p.date===selected);let d=$("fDate").value;let updated={...old,date:d,day:dayName(d),name:$("fName").value.trim(),desc:$("fDesc").value.trim(),note:$("fNote").value.trim(),exercises:collectExercises()};let idx=plan.indexOf(old);let next=[...plan];next[idx]=updated;next=normalize(next);pendingPayload=next;selected=d;openAuth(next)};
+$("editor").onclick=e=>{if(e.target.id==="editor")closeEditor()};$("auth").onclick=e=>{if(e.target.id==="auth")closeAuth()};
+window.onkeydown=e=>{if(e.key==="Escape"){closeEditor();closeFull();closeAuth()}if(!document.querySelector(".editor.open")&&!$("fullPage").classList.contains("open")&&!$("auth").classList.contains("open")){if(e.key==="ArrowLeft")move(-1);if(e.key==="ArrowRight")move(1)}};
+loadPlan();
+</script>
+</body>
+</html>
