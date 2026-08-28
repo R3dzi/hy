@@ -18,19 +18,19 @@
     "exercises": [
       {
         "order": "",
-        "name": "BS Run",
+        "name": "Bieg Spokojny",
         "sets": "1x",
         "value": "10min"
       },
       {
         "order": "",
-        "name": "BNP Run",
+        "name": "Bieg z narastającym tempem",
         "sets": "1x",
         "value": "25min"
       },
       {
         "order": "",
-        "name": "BS Run",
+        "name": "Bieg Spokojny",
         "sets": "1x",
         "value": "10min"
       }
