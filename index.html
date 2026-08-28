@@ -731,43 +731,43 @@ textarea{
 
 <header>
 
-  <div>
-    <div class="eyebrow">HYROX · Gdańsk 2026</div>
+  <!-- <div> -->
+    <!-- <div class="eyebrow">HYROX · Gdańsk 2026</div> -->
 
-    <h1>Plan treningowy</h1>
+    <!-- <h1>Plan treningowy</h1> -->
 
-    <p class="subtitle">
-      Miesiąc przygotowań przed startem.
-    </p>
-  </div>
+    <!-- <p class="subtitle"> -->
+      <!-- Miesiąc przygotowań przed startem. -->
+    <!-- </p> -->
+  <!-- </div> -->
 
-  <div class="actions">
+  <!-- <div class="actions"> -->
 
-    <button class="btn" id="todayBtn">
-      Dziś
-    </button>
+    <!-- <button class="btn" id="todayBtn"> -->
+      <!-- Dziś -->
+    <!-- </button> -->
 
-    <button class="btn" id="fullBtn">
-      Pełny plan
-    </button>
+    <!-- <button class="btn" id="fullBtn"> -->
+      <!-- Pełny plan -->
+    <!-- </button> -->
 
-    <button class="btn" id="calendarBtn">
-      ＋ Kalendarz
-    </button>
+    <!-- <button class="btn" id="calendarBtn"> -->
+      <!-- ＋ Kalendarz -->
+    <!-- </button> -->
 
-    <button class="btn primary" id="editBtn">
-      Edytuj
-    </button>
+    <!-- <button class="btn primary" id="editBtn"> -->
+      <!-- Edytuj -->
+    <!-- </button> -->
 
-  </div>
+  <!-- </div> -->
 
 </header>
 
 
-<div class="section-head">
-  <h3>Week</h3>
-  <span>dotknij dnia, aby przejść</span>
-</div>
+<!-- <div class="section-head"> -->
+  <!-- <h3>Week</h3> -->
+  <!-- <span>dotknij dnia, aby przejść</span> -->
+<!-- </div> -->
 
 <div class="week" id="week"></div>
 
@@ -872,7 +872,7 @@ textarea{
   </div>
 
 
-  <div class="field">
+  <div class="field" style="display: none;">
 
     <label>Typ</label>
 
@@ -2866,31 +2866,8 @@ async function githubCommit() {
 
 
 /*
-  DZIŚ
-*/
-
-$("todayBtn").onclick =
-  () =>
-    goToToday();
-
-
-/*
-  PEŁNY PLAN
-*/
-
-$("fullBtn").onclick =
-  () =>
-    openFull();
-
-
-/*
   GOOGLE CALENDAR
 */
-
-$("calendarBtn").onclick =
-  () =>
-    googleCalendar();
-
 
 $("calendarBottom").onclick =
   () =>
@@ -2900,11 +2877,6 @@ $("calendarBottom").onclick =
 /*
   EDYCJA
 */
-
-$("editBtn").onclick =
-  () =>
-    openEditor();
-
 
 $("bottomEdit").onclick =
   () =>
