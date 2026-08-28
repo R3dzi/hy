@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pl">
 <head>
 <meta charset="utf-8">
@@ -24,7 +24,7 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
 <body>
 <div class="app">
 <header><div><div class="eyebrow">HYROX · Training Plan</div><h1>Plan treningowy</h1><p class="subtitle">7 września — 10 października 2026</p></div>
-<div class="actions"><button class="btn" id="todayBtn">Dzisiaj</button><button class="btn" id="fullBtn">Pełny plan</button><button class="btn primary" id="editBtn">Edytuj dzień</button></div></header>
+<div class="actions"><button class="btn" id="todayBtn">Dzisiaj</button><button class="btn" id="fullBtn">Pełny plan</button><button class="btn" id="calendarBtn">＋ Google Calendar</button><button class="btn primary" id="editBtn">Edytuj dzień</button></div></header>
 <div class="section-head"><h3>Week</h3><span>dotknij dnia, aby przejść</span></div><div class="week" id="week"></div>
 <section class="hero" id="hero"></section>
 </div>
@@ -39,6 +39,8 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
 <div class="field"><label>Data</label><input id="fDate" type="date" required></div>
 <div class="field"><label>Typ</label><select id="fType"><option value="run">Bieg</option><option value="strength">Siła</option><option value="other">Inny</option><option value="rest">Wolne</option></select></div>
 <div class="field"><label>Nazwa treningu</label><input id="fName" required></div>
+<div class="field"><label>Godzina rozpoczęcia (opcjonalnie)</label><input id="fStart" type="time"></div>
+<div class="field"><label>Godzina zakończenia (opcjonalnie)</label><input id="fEnd" type="time"></div>
 <div class="field"><label>Opis</label><textarea id="fDesc"></textarea></div>
 <div class="field"><label>Notatka</label><textarea id="fNote" placeholder="Np. samopoczucie, tempo, komentarz..."></textarea></div>
 <div class="field"><label>Zestaw ćwiczeń</label><div id="exerciseEditor"></div><button type="button" class="btn" id="addExercise" style="margin-top:8px;width:100%">+ Dodaj ćwiczenie</button></div>
@@ -47,27 +49,28 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
 
 <div class="auth" id="auth"><div class="auth-card">
 <div class="eyebrow">GitHub · zapis zmian</div><h2>Połącz z repozytorium</h2>
-<p>Podaj token GitHub tylko na czas tej sesji. Token nie jest zapisywany w pliku ani w localStorage. Musi mieć uprawnienie do zapisu zawartości repozytorium.</p>
-<div class="field"><label>GitHub Personal Access Token</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_..."></div>
-<div class="field"><label>Owner / użytkownik</label><input id="owner" placeholder="np. jan-kowalski"></div>
-<div class="field"><label>Nazwa repozytorium</label><input id="repo" placeholder="np. hyrox-plan"></div>
-<div class="field"><label>Branch</label><input id="branch" value="main"></div>
-<div class="auth-actions"><button class="btn" id="authCancel">Anuluj</button><button class="btn primary" id="authSave">Połącz i zapisz</button></div>
+<p>Podaj token GitHub. Zostanie zapamiętany w localStorage tego urządzenia, aby przy kolejnych wejściach nie trzeba było wpisywać go ponownie. Musi mieć uprawnienie do zapisu zawartości repozytorium.</p>
+<div class="field"><label>GitHub Personal Access Token</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_..."><div class="status">Token zostanie zapamiętany w localStorage tego urządzenia.</div></div>
+<div class="field"><label>Owner / użytkownik</label><input id="owner" value="R3dzi" readonly></div>
+<div class="field"><label>Nazwa repozytorium</label><input id="repo" value="hy" readonly></div>
+<div class="field"><label>Branch</label><input id="branch" value="main" readonly></div>
+<div class="auth-actions"><button class="btn" id="clearToken" type="button">Usuń zapamiętany token</button><button class="btn" id="authCancel">Anuluj</button><button class="btn primary" id="authSave">Połącz i zapisz</button></div>
 <div class="status" id="authStatus"></div>
 </div></div>
 
-<div class="bottom"><div class="bottom-inner"><button class="btn" id="prevBtn">← Poprzedni</button><button class="btn primary" id="bottomEdit">Edytuj</button><button class="btn" id="nextBtn">Następny →</button></div></div>
+<div class="bottom"><div class="bottom-inner"><button class="btn" id="prevBtn">← Poprzedni</button><button class="btn" id="calendarBottom">Kalendarz</button><button class="btn primary" id="bottomEdit">Edytuj</button><button class="btn" id="nextBtn">Następny →</button></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
 const JSON_PATH="one_month_prior_start_gdansk_2026.json";
+const TOKEN_STORAGE_KEY="hyrox_github_token";
 let plan=[],selected=null,pendingPayload=null,github=null;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 const typeOf=x=>{let n=(x.name||"").toLowerCase();return n==="wolne"?"rest":n.includes("bieg")?"run":n.includes("siłowa")?"strength":"other"};
 const nice=d=>new Intl.DateTimeFormat("pl-PL",{day:"numeric",month:"long",year:"numeric"}).format(new Date(d+"T12:00:00"));
 const dayName=d=>["niedziela","poniedziałek","wtorek","środa","czwartek","piątek","sobota"][new Date(d+"T12:00:00").getDay()];
-function normalize(arr){return arr.map(x=>({...x,exercises:x.exercises||x.ex||[],note:x.note||""})).sort((a,b)=>a.date.localeCompare(b.date))}
+function normalize(arr){return arr.map(x=>({...x,exercises:x.exercises||x.ex||[],note:x.note||"",startTime:x.startTime||"",endTime:x.endTime||""})).sort((a,b)=>a.date.localeCompare(b.date))}
 async function loadPlan(){
  document.body.classList.add("loading");
  try{
@@ -83,23 +86,41 @@ function render(){
  let x=plan.find(p=>p.date===selected)||plan[0],t=typeOf(x),today=new Date().toISOString().slice(0,10);
  selected=x.date;
  $("week").innerHTML=(()=>{let i=plan.findIndex(p=>p.date===selected),s=Math.max(0,Math.min(plan.length-7,i-3));return plan.slice(s,s+7).map(p=>`<button class="day ${p.date===selected?"active":""} ${p.date===today?"today":""}" onclick="selectDay('${p.date}')"><div class="wd">${esc(p.day.slice(0,3))}</div><div class="num">${new Date(p.date+"T12:00:00").getDate()}</div><div class="mini ${typeOf(p)}">${esc(p.name)}</div></button>`).join("")})();
- $("hero").innerHTML=`<div class="datebar"><div><div class="weekday">${esc(x.day)}</div><div class="date">${nice(x.date)}</div></div><div class="nav"><button class="iconbtn" onclick="move(-1)">‹</button><button class="iconbtn" onclick="move(1)">›</button></div></div><div class="workout"><div class="type ${t}"><span class="dot"></span>${esc(x.name)}</div>${t==="rest"?`<h2>Regeneracja</h2><p class="main-desc empty">Dzień bez zaplanowanego treningu.</p>`:`<h2>${esc(x.name)}</h2><p class="main-desc">${esc(x.desc||"Brak opisu — dodaj go w edycji.")}</p>`}${x.note?`<div class="today-note">Notatka: ${esc(x.note)}</div>`:""}${x.date===today?`<div class="today-note">● Dzisiaj</div>`:""}</div>${x.exercises.length?`<div class="section-head"><h3>Ćwiczenia</h3><span>${x.exercises.length} pozycji</span></div><div class="exercise-grid">${x.exercises.map(e=>`<div class="exercise"><div class="row"><div><span class="muted">${esc(e.order)}</span> <span class="name">${esc(e.name)}</span></div><div class="meta">${esc(e.sets)} × ${esc(e.value)}</div></div></div>`).join("")}</div>`:""}`;
+ $("hero").innerHTML=`<div class="datebar"><div><div class="weekday">${esc(x.day)}</div><div class="date">${nice(x.date)}</div></div><div class="nav"><button class="iconbtn" onclick="move(-1)">‹</button><button class="iconbtn" onclick="move(1)">›</button></div></div><div class="workout"><div class="type ${t}"><span class="dot"></span>${esc(x.name)}</div>${x.startTime&&x.endTime?`<div style="margin-top:6px;font-size:12px;font-weight:850;color:var(--muted)">🕒 ${esc(x.startTime)}–${esc(x.endTime)}</div>`:""}${t==="rest"?`<h2>Regeneracja</h2><p class="main-desc empty">Dzień bez zaplanowanego treningu.</p>`:`<h2>${esc(x.name)}</h2><p class="main-desc">${esc(x.desc||"Brak opisu — dodaj go w edycji.")}</p>`}${x.note?`<div class="today-note">Notatka: ${esc(x.note)}</div>`:""}${x.date===today?`<div class="today-note">● Dzisiaj</div>`:""}</div>${x.exercises.length?`<div class="section-head"><h3>Ćwiczenia</h3><span>${x.exercises.length} pozycji</span></div><div class="exercise-grid">${x.exercises.map(e=>`<div class="exercise"><div class="row"><div><span class="muted">${esc(e.order)}</span> <span class="name">${esc(e.name)}</span></div><div class="meta">${esc(e.sets)} × ${esc(e.value)}</div></div></div>`).join("")}</div>`:""}`;
 }
 function selectDay(d){selected=d;render();scrollTo({top:0,behavior:"smooth"})}
 function move(n){let i=plan.findIndex(p=>p.date===selected);selected=plan[Math.max(0,Math.min(plan.length-1,i+n))].date;render();scrollTo({top:0,behavior:"smooth"})}
 function renderExercises(ex){$("exerciseEditor").innerHTML=(ex||[]).map(e=>`<div class="exercise-edit"><div class="exercise-edit-grid"><input class="e-order" value="${esc(e.order)}" placeholder="1a"><input class="e-name" value="${esc(e.name)}" placeholder="Ćwiczenie"><input class="e-sets" value="${esc(e.sets)}" placeholder="Serie"><input class="e-value" value="${esc(e.value)}" placeholder="Dystans / powt."></div><button type="button" class="remove-ex" onclick="this.closest('.exercise-edit').remove()">Usuń</button></div>`).join("")}
 function collectExercises(){return [...document.querySelectorAll(".exercise-edit")].map(e=>({order:e.querySelector(".e-order").value.trim(),name:e.querySelector(".e-name").value.trim(),sets:e.querySelector(".e-sets").value.trim(),value:e.querySelector(".e-value").value.trim()})).filter(e=>e.name)}
-function openEditor(){let x=plan.find(p=>p.date===selected);$("fDate").value=x.date;$("fType").value=typeOf(x);$("fName").value=x.name;$("fDesc").value=x.desc||"";$("fNote").value=x.note||"";renderExercises(x.exercises);$("editor").classList.add("open")}
+function openEditor(){let x=plan.find(p=>p.date===selected);$("fDate").value=x.date;$("fType").value=typeOf(x);$("fName").value=x.name;$("fStart").value=x.startTime||"";$("fEnd").value=x.endTime||"";$("fDesc").value=x.desc||"";$("fNote").value=x.note||"";renderExercises(x.exercises);$("editor").classList.add("open")}
 function closeEditor(){$("editor").classList.remove("open")}
+function googleCalendar(){
+ let x=plan.find(p=>p.date===selected); if(!x)return;
+ let start=x.startTime||"",end=x.endTime||"";
+ let title=x.name||"Trening HYROX";
+ let details=[x.desc||"",x.exercises?.length?"\nĆwiczenia:\n"+x.exercises.map(e=>`${e.order||""} ${e.name} — ${e.sets||""} × ${e.value||""}`).join("\n"):"",x.note?`\nNotatka: ${x.note}`:""].join("").trim();
+ const fmt=s=>String(s).replace(/[-:]/g,"");
+ let params=new URLSearchParams();
+ params.set("action","TEMPLATE");
+ params.set("text",title);
+ params.set("details",details);
+ if(start&&end){
+   params.set("dates",`${x.date.replace(/-/g,"")}T${fmt(start)}00/${x.date.replace(/-/g,"")}T${fmt(end)}00`);
+ }else{
+   params.set("dates",`${x.date.replace(/-/g,"")}/${x.date.replace(/-/g,"")}`);
+ }
+ window.open("https://calendar.google.com/calendar/render?"+params.toString(),"_blank");
+}
 function renderFull(){$("fullTable").innerHTML=plan.map(p=>(p.exercises.length?p.exercises:[{order:"",name:"",sets:"",value:""}]).map((e,i)=>`<tr><td class="daycell">${i===0?esc(p.day):""}</td><td class="datecell">${i===0?esc(p.date):""}</td><td class="typecell">${i===0?`<span class="badge ${typeOf(p)}">${esc(p.name)}</span>`:""}</td><td class="detail">${i===0?esc(p.desc||""): ""}${i===0&&p.note?`<br><span class="muted">Notatka: ${esc(p.note)}</span>`:""}</td><td>${esc(e.name)}</td><td>${esc(e.sets)}</td><td>${esc(e.value)}</td></tr>`).join("")).join("")}
 function openFull(){renderFull();$("fullPage").classList.add("open");document.body.style.overflow="hidden"}
 function closeFull(){$("fullPage").classList.remove("open");document.body.style.overflow=""}
 function toast(msg){let q=$("toast");q.textContent=msg;q.classList.add("show");setTimeout(()=>q.classList.remove("show"),1800)}
-function openAuth(payload){pendingPayload=payload;$("authStatus").textContent="";$("auth").classList.add("open");$("token").focus()}
+function openAuth(payload){pendingPayload=payload;$("authStatus").textContent="";const saved=localStorage.getItem(TOKEN_STORAGE_KEY)||"";$("token").value=saved;$("auth").classList.add("open");$("token").focus()}
 function closeAuth(){$("auth").classList.remove("open");pendingPayload=null}
 async function githubCommit(){
  const token=$("token").value.trim(),owner=$("owner").value.trim(),repo=$("repo").value.trim(),branch=$("branch").value.trim()||"main";
  if(!token||!owner||!repo){$("authStatus").textContent="Uzupełnij token, owner i repozytorium.";return}
+ localStorage.setItem(TOKEN_STORAGE_KEY,token);
  $("authStatus").textContent="Pobieram aktualną wersję pliku…";
  try{
   const api=`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${JSON_PATH}`;
@@ -117,11 +138,11 @@ async function githubCommit(){
   closeAuth();closeEditor();render();toast("Zapisano do one_month_prior_start_gdansk_2026.json");
  }catch(e){$("authStatus").textContent=e.message;console.error(e)}
 }
-$("editBtn").onclick=openEditor;$("bottomEdit").onclick=openEditor;$("fullBtn").onclick=openFull;$("closeFull").onclick=closeFull;$("closeBtn").onclick=closeEditor;$("cancelBtn").onclick=closeEditor;$("prevBtn").onclick=()=>move(-1);$("nextBtn").onclick=()=>move(1);
+$("editBtn").onclick=openEditor;$("calendarBtn").onclick=googleCalendar;$("calendarBottom").onclick=googleCalendar;$("bottomEdit").onclick=openEditor;$("fullBtn").onclick=openFull;$("closeFull").onclick=closeFull;$("closeBtn").onclick=closeEditor;$("cancelBtn").onclick=closeEditor;$("prevBtn").onclick=()=>move(-1);$("nextBtn").onclick=()=>move(1);
 $("addExercise").onclick=()=>{let d=document.createElement("div");d.className="exercise-edit";d.innerHTML=`<div class="exercise-edit-grid"><input class="e-order" placeholder="1a"><input class="e-name" placeholder="Ćwiczenie"><input class="e-sets" placeholder="Serie"><input class="e-value" placeholder="Dystans / powt."></div><button type="button" class="remove-ex" onclick="this.closest('.exercise-edit').remove()">Usuń</button>`;$("exerciseEditor").appendChild(d);d.querySelector(".e-name").focus()};
-$("authCancel").onclick=closeAuth;$("authSave").onclick=githubCommit;
+$("authCancel").onclick=closeAuth;$("authSave").onclick=githubCommit;$("clearToken").onclick=()=>{localStorage.removeItem(TOKEN_STORAGE_KEY);$("token").value="";toast("Usunięto zapamiętany token")};
 $("todayBtn").onclick=()=>{let today=new Date().toISOString().slice(0,10),x=plan.reduce((a,b)=>Math.abs(new Date(b.date)-new Date(today))<Math.abs(new Date(a.date)-new Date(today))?b:a);selected=x.date;render();scrollTo({top:0,behavior:"smooth"})};
-$("form").onsubmit=e=>{e.preventDefault();let old=plan.find(p=>p.date===selected);let d=$("fDate").value;let updated={...old,date:d,day:dayName(d),name:$("fName").value.trim(),desc:$("fDesc").value.trim(),note:$("fNote").value.trim(),exercises:collectExercises()};let idx=plan.indexOf(old);let next=[...plan];next[idx]=updated;next=normalize(next);pendingPayload=next;selected=d;openAuth(next)};
+$("form").onsubmit=e=>{e.preventDefault();let old=plan.find(p=>p.date===selected);let d=$("fDate").value;let updated={...old,date:d,day:dayName(d),name:$("fName").value.trim(),startTime:$("fStart").value,endTime:$("fEnd").value,desc:$("fDesc").value.trim(),note:$("fNote").value.trim(),exercises:collectExercises()};let idx=plan.indexOf(old);let next=[...plan];next[idx]=updated;next=normalize(next);pendingPayload=next;selected=d;openAuth(next)};
 $("editor").onclick=e=>{if(e.target.id==="editor")closeEditor()};$("auth").onclick=e=>{if(e.target.id==="auth")closeAuth()};
 window.onkeydown=e=>{if(e.key==="Escape"){closeEditor();closeFull();closeAuth()}if(!document.querySelector(".editor.open")&&!$("fullPage").classList.contains("open")&&!$("auth").classList.contains("open")){if(e.key==="ArrowLeft")move(-1);if(e.key==="ArrowRight")move(1)}};
 loadPlan();
