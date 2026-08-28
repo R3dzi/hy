@@ -23,11 +23,10 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
 </head>
 <body>
 <div class="app">
-<header><div><div class="eyebrow">HYROX · Training Plan</div><h1>Plan treningowy</h1><p class="subtitle">7 września — 10 października 2026</p></div>
-<div class="actions"><button class="btn" id="todayBtn">Dzisiaj</button><button class="btn" id="fullBtn">Pełny plan</button><button class="btn" id="calendarBtn">＋ Google Calendar</button><button class="btn primary" id="editBtn">Edytuj dzień</button></div></header>
-<div class="section-head"><h3>Week</h3><span>dotknij dnia, aby przejść</span></div><div class="week" id="week"></div>
-<section class="hero" id="hero"></section>
-</div>
+
+<!-- <div class="section-head"><h3>Week</h3><span>dotknij dnia, aby przejść</span></div><div class="week" id="week"></div> -->
+<!-- <section class="hero" id="hero"></section> -->
+<!-- </div> -->
 
 <div class="full-page" id="fullPage"><div class="full-inner">
 <header class="full-head"><div><div class="eyebrow">HYROX · Wszystkie dni</div><h2>Pełny plan</h2><p class="subtitle">Cały grafik treningowy w jednym widoku.</p></div><button class="iconbtn" id="closeFull">×</button></header>
@@ -58,7 +57,7 @@ header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
 <div class="status" id="authStatus"></div>
 </div></div>
 
-<div class="bottom"><div class="bottom-inner"><button class="btn" id="prevBtn">← Poprzedni</button><button class="btn" id="calendarBottom">Kalendarz</button><button class="btn primary" id="bottomEdit">Edytuj</button><button class="btn" id="nextBtn">Następny →</button></div></div>
+<div class="bottom"><div class="bottom-inner"><button class="btn" id="prevBtn">Poprzedni dzień</button><button class="btn" id="calendarBottom">＋ Google Calendar</button><button class="btn primary" id="bottomEdit">Edytuj trening</button><button class="btn" id="nextBtn">Następny dzień</button></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
