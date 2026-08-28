@@ -18,19 +18,19 @@
     "exercises": [
       {
         "order": "",
-        "name": "Bieg Spokojny",
+        "name": "Spokojny",
         "sets": "1x",
         "value": "10min"
       },
       {
         "order": "",
-        "name": "Bieg z narastającym tempem",
+        "name": "Z narastającym tempem",
         "sets": "1x",
         "value": "25min"
       },
       {
         "order": "",
-        "name": "Bieg Spokojny",
+        "name": "Spokojny",
         "sets": "1x",
         "value": "10min"
       }
