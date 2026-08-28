@@ -15,7 +15,26 @@
     "day": "wtorek",
     "name": "Bieg",
     "desc": "Założenia:\n10min BS \n25min BNP \n10min BS",
-    "exercises": [],
+    "exercises": [
+      {
+        "order": "1",
+        "name": "BS Run",
+        "sets": "1",
+        "value": "10min"
+      },
+      {
+        "order": "2",
+        "name": "BNP Run",
+        "sets": "1",
+        "value": "25min"
+      },
+      {
+        "order": "1",
+        "name": "BS Run",
+        "sets": "1",
+        "value": "10min"
+      }
+    ],
     "note": "",
     "startTime": "",
     "endTime": "",
