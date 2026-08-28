@@ -23,7 +23,7 @@
         "value": "10min"
       },
       {
-        "order": "2",
+        "order": "1",
         "name": "BNP Run",
         "sets": "1",
         "value": "25min"
